@@ -66,6 +66,7 @@ test('tutor activation, preview, streamed citations, cancellation, deletion and 
     const consent = page.getByLabel('Accept session-only key storage before storing a key');
     if (await consent.count()) await consent.check();
     await page.getByRole('button', { name: 'Store key', exact: true }).click();
+    await expect(page.getByLabel('Replace API key')).toBeVisible();
     await page.getByLabel('Daily app limit (USD)').fill('1');
     await page.getByLabel(/I understand the context sharing/).check();
     await page.getByRole('button', { name: 'Activate & test connection' }).click();

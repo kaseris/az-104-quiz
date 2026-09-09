@@ -1468,7 +1468,11 @@ function Settings({ state, busy, run, save, remove, openTutor }) {
         </div>
       </section>
       <DataManagement />
-      <ProviderSettings key={String(c.hasKey) + c.storage + c.revision} openTutor={openTutor} />
+      <ProviderSettings
+        parentBusy={busy}
+        key={String(c.hasKey) + c.storage + c.revision}
+        openTutor={openTutor}
+      />
       <section className="panel settings-panel">
         <div className="section-heading">
           <div className="icon-title">

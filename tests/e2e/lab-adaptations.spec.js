@@ -108,6 +108,7 @@ test('adaptation preview, independent review, explicit opening and restart prese
     const consent = page.getByLabel('Accept session-only key storage before storing a key');
     if (await consent.count()) await consent.check();
     await page.getByRole('button', { name: 'Store key', exact: true }).click();
+    await expect(page.getByLabel('Replace API key')).toBeVisible();
     await page.getByLabel('Daily app limit (USD)').fill('2');
     await page.getByLabel(/I understand the context sharing/).check();
     await page.getByRole('button', { name: 'Activate & test connection', exact: true }).click();

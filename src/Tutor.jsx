@@ -16,7 +16,7 @@ export function TutorLink({ sessionId, questionId, mode = 'explain', draftId, di
     </button>
   );
 }
-export function ProviderSettings({ openTutor }) {
+export function ProviderSettings({ openTutor, parentBusy = false }) {
   const [data, setData] = useState(null),
     [error, setError] = useState(''),
     [busy, setBusy] = useState(false);
@@ -50,6 +50,7 @@ export function ProviderSettings({ openTutor }) {
       setBusy(false);
     }
   };
+  const locked = busy || parentBusy || !data;
   const save = () =>
     api.provider.settings({
       dailyLimit: Number(limit),
@@ -90,7 +91,7 @@ export function ProviderSettings({ openTutor }) {
       <div className="tutor-settings-grid">
         <label>
           Tutoring model
-          <select value={model} onChange={(e) => setModel(e.target.value)} disabled={busy}>
+          <select value={model} onChange={(e) => setModel(e.target.value)} disabled={locked}>
             {(data?.models || [{ id: 'gpt-5.6-terra' }]).map((m) => (
               <option key={m.id}>{m.id}</option>
             ))}
@@ -101,7 +102,7 @@ export function ProviderSettings({ openTutor }) {
           <select
             value={generationModel}
             onChange={(e) => setGenerationModel(e.target.value)}
-            disabled={busy}
+            disabled={locked}
           >
             {(data?.models || []).map((m) => (
               <option key={m.id}>{m.id}</option>
@@ -113,7 +114,7 @@ export function ProviderSettings({ openTutor }) {
           <select
             value={reviewModel}
             onChange={(e) => setReviewModel(e.target.value)}
-            disabled={busy}
+            disabled={locked}
           >
             {(data?.models || []).map((m) => (
               <option key={m.id}>{m.id}</option>
@@ -130,7 +131,7 @@ export function ProviderSettings({ openTutor }) {
             placeholder="Choose a limit"
             value={limit}
             onChange={(e) => setLimit(e.target.value)}
-            disabled={busy}
+            disabled={locked}
           />
         </label>
         <label>
@@ -142,7 +143,7 @@ export function ProviderSettings({ openTutor }) {
             step="1"
             value={output}
             onChange={(e) => setOutput(e.target.value)}
-            disabled={busy}
+            disabled={locked}
           />
         </label>
       </div>
@@ -151,23 +152,29 @@ export function ProviderSettings({ openTutor }) {
         conservative cache-write allowance and are not your final provider bill.
       </p>
       <label className="tutor-consent">
-        <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />I
-        understand the context sharing and separate API charges, including a small activation test.
+        <input
+          type="checkbox"
+          disabled={locked}
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+        />
+        I understand the context sharing and separate API charges, including a small activation
+        test.
       </label>
       <div className="reader-row">
-        <button className="secondary" disabled={busy || !limit} onClick={() => run(save)}>
+        <button className="secondary" disabled={locked || !limit} onClick={() => run(save)}>
           Save AI settings
         </button>
         <button
           className="secondary"
-          disabled={busy || !data?.credentials.hasKey}
+          disabled={locked || !data?.credentials.hasKey}
           onClick={() => run(() => api.provider.validate())}
         >
           Check model access
         </button>
         <button
           className="primary"
-          disabled={busy || !limit || !consent || !data?.credentials.hasKey}
+          disabled={locked || !limit || !consent || !data?.credentials.hasKey}
           onClick={() =>
             run(async () => {
               await save();

@@ -102,6 +102,13 @@ try {
       readdirSync(profile).some((n) => n.includes('.v8.')),
       'Migration backup missing',
     );
+    console.log(
+      JSON.stringify({
+        pass,
+        pageURL: page.url(),
+        appPath: await app.evaluate(({ app }) => app.getAppPath()),
+      }),
+    );
     const state = await page.evaluate(() => window.study.getState());
     if (pass === 0 && runtime.safe)
       await page.evaluate(() =>

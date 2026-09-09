@@ -158,6 +158,7 @@ test('generation queue publishes reviewed items, remains responsive, and recover
     const consent = page.getByLabel('Accept session-only key storage before storing a key');
     if (await consent.count()) await consent.check();
     await page.getByRole('button', { name: 'Store key', exact: true }).click();
+    await expect(page.getByLabel('Replace API key')).toBeVisible();
     await page.getByLabel(/I understand the context sharing/).check();
     await page.getByRole('button', { name: 'Activate & test connection' }).click();
     await expect(page.getByText('AI ACTIVE', { exact: true })).toBeVisible();

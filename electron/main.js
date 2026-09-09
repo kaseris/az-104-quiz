@@ -1,3 +1,4 @@
+import { trustedRendererURL } from './trusted-url.js';
 import { registerDataManagement } from './data-management.js';
 import { LabStore } from './labs.js';
 import { app, BrowserWindow, ipcMain, shell, safeStorage, session, dialog, Menu } from 'electron';
@@ -21,11 +22,8 @@ if (process.env.AZ104_DATA_DIR && !app.isPackaged)
   app.setPath('userData', process.env.AZ104_DATA_DIR);
 const development = !app.isPackaged && process.env.AZ104_DEV_SERVER === 'http://127.0.0.1:5173';
 const entry = pathToFileURL(join(root, 'dist/index.html')).href;
-const trustedURL = (url) => {
-  const parsed = new URL(url);
-  parsed.hash = '';
-  return development ? parsed.origin === 'http://127.0.0.1:5173' : parsed.href === entry;
-};
+const trustedURL = (url) => trustedRendererURL(url, { entry, development });
+
 const allowedLinks = new Set([
   blueprint.url,
   ...documents.map((d) => d.url),
