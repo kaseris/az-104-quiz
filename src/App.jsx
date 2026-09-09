@@ -1073,6 +1073,7 @@ function Quiz({ session, state, busy, update, run, navigate }) {
               <span
                 key={it.question.id}
                 className={`${i === session.cursor ? 'current' : ''} ${it.submittedAt ? `done ${it.correct ? 'correct' : 'incorrect'}` : ''}`}
+                role="img"
                 aria-label={`Question ${i + 1}: ${it.submittedAt ? (it.correct ? 'correct' : 'incorrect') : i === session.cursor ? 'current' : 'upcoming'}`}
                 aria-current={i === session.cursor ? 'step' : undefined}
               >

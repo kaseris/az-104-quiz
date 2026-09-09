@@ -4,11 +4,11 @@ First packaged release of the offline-first AZ-104 study companion. Version 0.5.
 
 Includes 100 reviewed question adaptations, adaptive and exam-style practice, documentation reading and annotations, optional AI tutoring and reviewed question generation, and two released guided lab pilots. Stage 6 is accepted complete by user decision; the additional lab drafts remain unreleased pending walkthrough verification.
 
-Stage 7 adds recovery backups, additive portable import/export, selective personal-evidence deletion, study reset, inspectable local diagnostics, macOS DMGs, and a Windows per-user installer. Imported AI history is inert and cannot submit paid requests. Credentials and executable jobs are excluded from portable exports.
+Stage 7 improves text contrast, correctness-indicator accessibility, Windows installed-path handling and long-document search. It adds recovery backups, additive portable import/export, selective personal-evidence deletion, study reset, inspectable local diagnostics, macOS DMGs, and a Windows per-user installer. Imported AI history is inert and cannot submit paid requests. Credentials and executable jobs are excluded from portable exports.
 
 ## Platform and distribution limitations
 
-- macOS 15 and 26: Apple Silicon and Intel builds have separate validation jobs. Consult the release workflow evidence before claiming a target passed.
+- macOS 15 Apple Silicon and Intel: native installation/replacement and credential persistence passed in CI. macOS 26 compatibility is a required candidate-workflow gate; consult its completed evidence.
 - Windows x64: experimental Windows 11 target; Windows Server CI smoke testing does not establish Windows 11 desktop compatibility.
 - All installers are unsigned by a distribution identity. macOS applications may have an ad-hoc signature required for local execution; this is not Developer ID signing or notarization. Windows may show an unknown-publisher warning. Do not disable OS security globally.
 - Signing, notarization, consistent unsigned-macOS Keychain behavior, and manual assistive-technology verification remain explicit dependencies. Automatic updates are disabled.

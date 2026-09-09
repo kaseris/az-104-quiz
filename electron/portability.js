@@ -1,5 +1,5 @@
 import { randomUUID, createHash } from 'node:crypto';
-import { statSync } from 'node:fs';
+import { statSync, chmodSync } from 'node:fs';
 import { ensure, validateBank, validateSelection } from './validation.js';
 import { validateLabs } from '../content/lab-contract.js';
 import { documents } from '../content/documents.js';
@@ -120,6 +120,7 @@ export class Portability {
       'Choose a new backup file.',
     );
     this.db.prepare('VACUUM INTO ?').run(destination);
+    if (process.platform !== 'win32') chmodSync(destination, 0o600);
     return true;
   }
   recoveryBackup() {
