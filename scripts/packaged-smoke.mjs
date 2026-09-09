@@ -17,7 +17,20 @@ assert.equal(
   'true',
   'Packaged tests require a disposable CI account; never run against a personal profile.',
 );
-const executablePath = resolve(process.argv[2] || process.env.AZ104_PACKAGED_EXECUTABLE || '');
+const defaultExecutable =
+  process.platform === 'darwin'
+    ? join(
+        'release',
+        process.arch === 'arm64' ? 'mac-arm64' : 'mac',
+        'AZ-104 Study Desk.app',
+        'Contents',
+        'MacOS',
+        'AZ-104 Study Desk',
+      )
+    : join('release', 'win-unpacked', 'AZ-104 Study Desk.exe');
+const executablePath = resolve(
+  process.argv[2] || process.env.AZ104_PACKAGED_EXECUTABLE || defaultExecutable,
+);
 assert.ok(existsSync(executablePath), 'Packaged executable is missing.');
 const profile =
   process.platform === 'darwin'

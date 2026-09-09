@@ -2,6 +2,7 @@ import { randomUUID, createHash } from 'node:crypto';
 import { statSync } from 'node:fs';
 import { ensure, validateBank, validateSelection } from './validation.js';
 import { validateLabs } from '../content/lab-contract.js';
+import { documents } from '../content/documents.js';
 import { schemaVersion, migrate } from './migrations.js';
 import { DatabaseSync } from 'node:sqlite';
 
@@ -413,25 +414,30 @@ export class Portability {
           Array.isArray(e.checklist) &&
           typeof e.notes === 'string' &&
           typeof e.output === 'string' &&
-          typeof e.problemKind === 'string',
+          ['none', 'environment', 'conceptual'].includes(e.problemKind),
         'Invalid lab evidence.',
       );
       ensure(
         plain(p) &&
           Number.isInteger(p.step) &&
           Number.isInteger(p.hintsRevealed) &&
-          Array.isArray(p.hintRevealedAt),
+          Array.isArray(p.hintRevealedAt) &&
+          ['goal', 'walkthrough', 'cleanup'].includes(p.pane) &&
+          p.step >= 0 &&
+          p.hintsRevealed >= 0,
         'Invalid lab progress.',
       );
       ensure(
         plain(c) &&
-          typeof c.status === 'string' &&
+          ['pending', 'completed'].includes(c.status) &&
           typeof c.note === 'string' &&
           Array.isArray(c.history),
         'Invalid cleanup record.',
       );
       ensure(
-        plain(r) && typeof r.answer === 'string' && typeof r.assessment === 'string',
+        plain(r) &&
+          typeof r.answer === 'string' &&
+          ['unanswered', 'needs_review', 'understood'].includes(r.assessment),
         'Invalid reflection.',
       );
     }
@@ -450,12 +456,50 @@ export class Portability {
           typeof d.body === 'string' && typeof d.title === 'string' && Array.isArray(d.references),
           'Invalid draft or conversation.',
         );
+      if (table === 'document_annotations') {
+        ensure(
+          row.document_id === d.documentId && documents.some((s) => s.id === d.documentId),
+          'Invalid annotation document.',
+        );
+        ensure(
+          ['highlight', 'bookmark'].includes(d.kind) &&
+            [
+              'sectionId',
+              'title',
+              'quote',
+              'note',
+              'prefix',
+              'suffix',
+              'originalRevision',
+              'currentRevision',
+            ].every((k) => typeof d[k] === 'string'),
+          'Invalid annotation shape.',
+        );
+        ensure(
+          Number.isInteger(d.start) && Number.isInteger(d.end) && d.start >= 0 && d.end >= d.start,
+          'Invalid annotation range.',
+        );
+      }
+      if (table === 'document_drafts' || table === 'tutor_conversations') {
+        ensure(
+          d.references.length <= 20 &&
+            d.references.every((r) => plain(r) && typeof r.kind === 'string'),
+          'Invalid retained references.',
+        );
+      }
       if (table === 'portable_messages')
         ensure(
           d.status === 'historical' &&
             typeof d.text === 'string' &&
             plain(d.context) &&
-            Array.isArray(d.context.sources || []),
+            Array.isArray(d.context.sources || []) &&
+            (d.context.sources || []).every(
+              (s) =>
+                plain(s) &&
+                typeof s.citation === 'string' &&
+                typeof s.title === 'string' &&
+                typeof s.excerpt === 'string',
+            ),
           'Invalid historical message.',
         );
     }

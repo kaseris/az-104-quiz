@@ -158,3 +158,59 @@ test('schema 8 upgrades create a backup; unsupported downgrades leave database b
   assert.throws(() => new StudyStore(path), /newer app/);
   assert.deepEqual(readFileSync(path), before);
 });
+
+test('annotations retain excerpts after cache-free import and malformed annotation shapes are rejected', (t) => {
+  const a = fixture(t),
+    b = fixture(t),
+    reader = new DocumentStore(a.store);
+  const d = {
+    id: 'annotation',
+    kind: 'highlight',
+    documentId: 'rbac',
+    sectionId: 'rbac:role-assignments',
+    title: 'Roles',
+    originalRevision: 'old',
+    currentRevision: 'old',
+    quote: 'A retained quote',
+    prefix: '',
+    suffix: '',
+    start: 0,
+    end: 16,
+    note: 'My note',
+    status: 'attached',
+  };
+  a.store.db
+    .prepare('INSERT INTO document_annotations VALUES(?,?,?,?)')
+    .run(d.id, d.documentId, JSON.stringify(d), '2026-09-09');
+  const bundle = a.data.export();
+  b.data.apply(bundle);
+  assert.equal(new DocumentStore(b.store).annotations()[0].quote, d.quote);
+  assert.equal(new DocumentStore(b.store).annotations()[0].available, false);
+  assert.equal(reader.annotations()[0].quote, d.quote);
+  const bad = structuredClone(bundle);
+  bad.records.document_annotations[0].data = JSON.stringify({ ...d, prefix: 42 });
+  assert.throws(() => b.data.preview(bad), /annotation shape/);
+});
+
+test('generated questions import without executable jobs, and malformed lab states are rejected', (t) => {
+  const a = fixture(t),
+    b = fixture(t);
+  const q = structuredClone(a.store.bank[0]);
+  q.id = 'portable-custom';
+  q.familyId = 'portable-custom';
+  a.store.db.prepare('INSERT INTO portable_questions VALUES(?,?)').run(q.id, JSON.stringify(q));
+  a.store.refreshBank();
+  const bundle = a.data.export();
+  b.data.apply(bundle);
+  assert.ok(b.store.bank.some((x) => x.id === q.id));
+  assert.equal(b.store.db.prepare('SELECT count(*) n FROM generation_jobs').get().n, 0);
+  const lab = new LabStore(a.store).start({
+    labId: labs.find((l) => l.status === 'released').id,
+    method: 'portal',
+    preflightReviewed: true,
+  });
+  const bad = a.data.export();
+  const row = bad.records.lab_attempts.find((r) => r.id === lab.id);
+  row.cleanup = JSON.stringify({ status: 'invented', note: '', history: [] });
+  assert.throws(() => b.data.preview(bad), /cleanup/);
+});
