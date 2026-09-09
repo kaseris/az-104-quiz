@@ -16,7 +16,7 @@ Signing/notarization are intentionally unmet. Windows 11 remains experimental. N
 
 ## 7C — Verification evidence
 
-- Local lint, 145 Node tests and production build passed before packaging verification.
+- Local lint, 146 Node tests and production build passed before packaging verification.
 - Twelve deterministic real Electron workflows passed on macOS 15.7.4 ARM64; optional live Microsoft Learn test skipped.
 - Portability tests cover round trips, secret exclusion, inert chat/citation retention, conflict rejection, rollback, reset accounting, schema-8 migration and byte-preserving unsupported-downgrade refusal.
 - Dependency installation audit: zero reported vulnerabilities.

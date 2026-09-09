@@ -178,43 +178,8 @@ export class Portability {
         const q = scrub(JSON.parse(data));
         return { id: q.id, data: JSON.stringify(q) };
       });
-    if (chats) {
-      records.portable_messages = this.db
-        .prepare('SELECT * FROM portable_messages')
-        .all()
-        .map((r) => ({ ...r }));
-      for (const r of this.db
-        .prepare(
-          'SELECT id,conversation_id,status,model,text,context,created_at FROM ai_requests WHERE conversation_id IS NOT NULL',
-        )
-        .all()) {
-        const context = scrub(JSON.parse(r.context));
-        if (!labEvidence && context.lab) {
-          // Sent lab text can quote personal evidence; keep only metadata unless explicitly included.
-          context.lab = { title: context.lab.title, attemptId: context.lab.attemptId };
-        }
-        records.portable_messages.push({
-          id: r.id,
-          conversation_id: r.conversation_id,
-          data: JSON.stringify({
-            id: r.id,
-            status: 'historical',
-            model: r.model,
-            text: r.text,
-            context,
-            created_at: r.created_at,
-            originalStatus: r.status,
-            cost: 0,
-            reserved: 0,
-            input_tokens: null,
-            output_tokens: null,
-            error: null,
-          }),
-        });
-      }
-      // Chat transcripts may themselves quote personal evidence; the UI discloses this explicitly.
-    }
-    return {
+    if (chats) records.portable_messages = this.messages(labEvidence);
+    const bundle = {
       format: 'az104-study-desk',
       version: exportVersion,
       databaseVersion: schemaVersion,
@@ -222,6 +187,50 @@ export class Portability {
       options: { chats, labEvidence },
       records,
     };
+    const rows = Object.values(records).flat();
+    ensure(
+      rows.length <= limits.records &&
+        rows.every((r) => Buffer.byteLength(JSON.stringify(r)) <= limits.recordBytes) &&
+        Buffer.byteLength(JSON.stringify(bundle)) <= limits.bytes,
+      'This profile exceeds portable export limits. Save a recovery backup instead.',
+    );
+    return bundle;
+  }
+  messages(labEvidence = false) {
+    const messages = this.db
+      .prepare('SELECT * FROM portable_messages')
+      .all()
+      .map((r) => ({ ...r }));
+    for (const r of this.db
+      .prepare(
+        'SELECT id,conversation_id,status,model,text,context,created_at FROM ai_requests WHERE conversation_id IS NOT NULL',
+      )
+      .all()) {
+      const context = scrub(JSON.parse(r.context));
+      if (!labEvidence && context.lab) {
+        // Sent lab text can quote personal evidence; keep only metadata unless explicitly included.
+        context.lab = { title: context.lab.title, attemptId: context.lab.attemptId };
+      }
+      messages.push({
+        id: r.id,
+        conversation_id: r.conversation_id,
+        data: JSON.stringify({
+          id: r.id,
+          status: 'historical',
+          model: r.model,
+          text: r.text,
+          context,
+          created_at: r.created_at,
+          originalStatus: r.status,
+          cost: 0,
+          reserved: 0,
+          input_tokens: null,
+          output_tokens: null,
+          error: null,
+        }),
+      });
+    }
+    return messages;
   }
   validate(bundle) {
     ensure(
@@ -515,10 +524,7 @@ export class Portability {
       counts = {};
     const historical = new Map(
       bundle.records.portable_messages.length
-        ? this.export({
-            chats: true,
-            labEvidence: bundle.options.labEvidence,
-          }).records.portable_messages.map((r) => [r.id, r])
+        ? this.messages(bundle.options.labEvidence).map((r) => [r.id, r])
         : [],
     );
     for (const [table, rows] of Object.entries(bundle.records)) {

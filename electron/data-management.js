@@ -90,7 +90,7 @@ export function registerDataManagement({
   });
   register('data:exportSave', (options) =>
     exclusive(async () =>
-      save('study-desk-export.json', JSON.stringify(data.export(options), null, 2), 'json'),
+      save('study-desk-export.json', JSON.stringify(data.export(options)), 'json'),
     ),
   );
   register('data:backup', () =>

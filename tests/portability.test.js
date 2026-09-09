@@ -214,3 +214,20 @@ test('generated questions import without executable jobs, and malformed lab stat
   row.cleanup = JSON.stringify({ status: 'invented', note: '', history: [] });
   assert.throws(() => b.data.preview(bad), /cleanup/);
 });
+
+test('export refuses oversized records rather than saving a file its importer cannot accept', (t) => {
+  const a = fixture(t);
+  a.store.db
+    .prepare('INSERT INTO document_drafts VALUES(?,?,?)')
+    .run(
+      'large',
+      JSON.stringify({
+        id: 'large',
+        title: 'Synthetic',
+        body: 'x'.repeat(2 * 1024 * 1024),
+        references: [],
+      }),
+      '2026-09-09',
+    );
+  assert.throws(() => a.data.export(), /export limits/);
+});
