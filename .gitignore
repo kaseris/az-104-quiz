@@ -1,0 +1,15 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.sqlite*
+.env*
+.DS_Store
+release/
+*.enc
+*.backup
+*.p12
+*.pfx
+*.pem
+*.key
+docs/STAGE5_LIVE*.json

@@ -1,0 +1,28 @@
+{
+  "registryVersion": "docs-2026-09-09-v3",
+  "checkedAt": "2026-09-09T04:17:40.184Z",
+  "results": [
+    {
+      "id": "lab-tags",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+      "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/management/tag-resources-cli.md",
+      "revision": "d85c7ae6fa68cdf044e1405383956515d5b0459d52058478e7c75fe46c13ab96",
+      "sourceUpdated": "2025-12-08T23:11:00Z",
+      "sections": 7,
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
+      "status": "verified"
+    },
+    {
+      "id": "lab-vnet",
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/manage-virtual-network",
+      "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/virtual-network/manage-virtual-network.yml",
+      "revision": "8cd467952a618f20b35c67c797b396339623d5887d21b796cf839d29d2908b69",
+      "sourceUpdated": "2025-10-08T22:11:00Z",
+      "sections": 13,
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
+      "status": "verified"
+    }
+  ]
+}

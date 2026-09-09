@@ -1,0 +1,14 @@
+:root {
+  --canvas: #f6f5f1;
+  --surface: #fffefa;
+  --sidebar: #263e30;
+  --green: #36583f;
+  --ink: #303b2e;
+  --muted: #757d6d;
+  --border: #e3e5da;
+  --border-strong: #d8ddce;
+  --focus: #99ab4d;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: Georgia, 'Times New Roman', serif;
+  --mono: 'SFMono-Regular', Consolas, monospace;
+}

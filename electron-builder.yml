@@ -1,0 +1,36 @@
+appId: io.github.kaseris.az104studydesk
+productName: AZ-104 Study Desk
+asar: true
+directories:
+  output: release
+  buildResources: build
+files:
+  - dist/**/*
+  - electron/**/*
+  - content/**/*
+  - licenses/**/*
+  - LICENSE
+  - THIRD_PARTY_NOTICES.md
+  - package.json
+  - '!**/*.map'
+extraMetadata:
+  main: electron/main.js
+artifactName: AZ104-Study-Desk-${version}-${os}-${arch}.${ext}
+mac:
+  category: public.app-category.education
+  icon: build/icon.icns
+  minimumSystemVersion: '15.0'
+  identity: null
+  notarize: false
+  target: dmg
+win:
+  icon: build/icon.ico
+  target: nsis
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+  runAfterFinish: false
+publish: null

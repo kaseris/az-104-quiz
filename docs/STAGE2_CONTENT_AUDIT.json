@@ -1,0 +1,1282 @@
+[
+  {
+    "questionId": "identity-05",
+    "version": 1,
+    "primarySkillId": "identity.access.assignments",
+    "familyId": "identity-05",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure RBAC / Scope Levels",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "sha256": "b6a788722f2edcb0c761da945cb619c30a70bbc5a8f52295d3245cd96d472e35",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-06",
+    "version": 1,
+    "primarySkillId": "identity.access.interpret",
+    "familyId": "identity-06",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure RBAC / Scope Levels",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "sha256": "b6a788722f2edcb0c761da945cb619c30a70bbc5a8f52295d3245cd96d472e35",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-07",
+    "version": 1,
+    "primarySkillId": "identity.access.interpret",
+    "familyId": "identity-07",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure RBAC / Common Built-in Roles",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "sha256": "b6a788722f2edcb0c761da945cb619c30a70bbc5a8f52295d3245cd96d472e35",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-08",
+    "version": 1,
+    "primarySkillId": "identity.access.roles",
+    "familyId": "identity-02",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure RBAC / Common Built-in Roles",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general",
+      "sha256": "327dfe5219fe157962b4b9be3d208bc8a68a2c5823b7d55781d49b2b1f789b06",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-09",
+    "version": 1,
+    "primarySkillId": "identity.access.roles",
+    "familyId": "identity-02",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure RBAC / Common Built-in Roles",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged",
+      "sha256": "6e60f1ef40b7ef34be43cadc4cedb0f2007f18f630540688d96c15d705d4c08d",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-10",
+    "version": 1,
+    "primarySkillId": "identity.governance.policy",
+    "familyId": "identity-10",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure Policy / Policy vs Initiative",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "sha256": "1d21fdd71efe4f1b192513b8a9d656fc8e95020f64fff7c39c7d8e4cf2699656",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-11",
+    "version": 1,
+    "primarySkillId": "identity.governance.policy",
+    "familyId": "identity-11",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure Policy / Common Built-in Policies",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "sha256": "1d21fdd71efe4f1b192513b8a9d656fc8e95020f64fff7c39c7d8e4cf2699656",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-12",
+    "version": 1,
+    "primarySkillId": "identity.governance.policy",
+    "familyId": "identity-12",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Azure Policy / Common Built-in Policies",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "sha256": "1d21fdd71efe4f1b192513b8a9d656fc8e95020f64fff7c39c7d8e4cf2699656",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-13",
+    "version": 1,
+    "primarySkillId": "identity.governance.tags",
+    "familyId": "identity-13",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Commands / Tags",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+      "sha256": "9bdcc2a950235f44ac45c34c2b05cf39b742d7f5cf15117f1f6a29fd5c1fc709",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-14",
+    "version": 1,
+    "primarySkillId": "identity.governance.tags",
+    "familyId": "identity-14",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Commands / Tags",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources",
+      "sha256": "9bdcc2a950235f44ac45c34c2b05cf39b742d7f5cf15117f1f6a29fd5c1fc709",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-15",
+    "version": 1,
+    "primarySkillId": "identity.governance.locks",
+    "familyId": "identity-15",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Commands / Resource Locks",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources",
+      "sha256": "a44f965407f38a0163316c29f7cc9d9c9381588cf7a0454a4422fbc914513f74",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-16",
+    "version": 1,
+    "primarySkillId": "identity.governance.groups",
+    "familyId": "identity-16",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Commands / Resource Groups",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+      "sha256": "12f35cf33a431a4e462d58a0bcad8c8de36c308d72a03e21479e94e01b4e57de",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-17",
+    "version": 1,
+    "primarySkillId": "identity.governance.groups",
+    "familyId": "identity-17",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Commands / Resource Groups",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal",
+      "sha256": "12f35cf33a431a4e462d58a0bcad8c8de36c308d72a03e21479e94e01b4e57de",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-18",
+    "version": 1,
+    "primarySkillId": "identity.users.create",
+    "familyId": "identity-18",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/identity-governance/lab01-entra-id-users-groups.md",
+    "sourceSection": "Exercise 1 / Create a Bulk User Import Template",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/entra/identity/users/users-bulk-add",
+      "finalUrl": "https://learn.microsoft.com/en-us/entra/identity/users/users-bulk-add",
+      "sha256": "ca9b56c728c1f7cf3be4eb439c0e9f930406ccd29ec762863e9ea1f0d5c1b401",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-19",
+    "version": 1,
+    "primarySkillId": "identity.users.properties",
+    "familyId": "identity-19",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/identity-governance/lab01-entra-id-users-groups.md",
+    "sourceSection": "Exercise 2 / Create Dynamic Group",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+      "finalUrl": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+      "sha256": "7a69591b84283b896dbd9ca7e99e0b7a939ea88dc617b8335d335fb9ade09681",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-20",
+    "version": 1,
+    "primarySkillId": "identity.users.create",
+    "familyId": "identity-20",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/identity-governance/lab01-entra-id-users-groups.md",
+    "sourceSection": "Exercise 2 / Create Security Groups",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+      "finalUrl": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
+      "sha256": "7a69591b84283b896dbd9ca7e99e0b7a939ea88dc617b8335d335fb9ade09681",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-21",
+    "version": 1,
+    "primarySkillId": "identity.users.sspr",
+    "familyId": "identity-21",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/identity-governance/lab01-entra-id-users-groups.md",
+    "sourceSection": "Exercise 4 / Configure Self-Service Password Reset",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr",
+      "finalUrl": "https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-sspr",
+      "sha256": "c94c0450bc8f1c12c1dc5ef7d48e0cc86a63203fb687242960dd6da5ada34094",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-22",
+    "version": 1,
+    "primarySkillId": "identity.users.licenses",
+    "familyId": "identity-22",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/identity-governance/lab01-entra-id-users-groups.md",
+    "sourceSection": "Exercise 5 / Assign Licenses",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/entra/fundamentals/license-users-groups",
+      "finalUrl": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/assign-licenses-to-users?view=o365-worldwide&preserve-view=true",
+      "sha256": "973a4597adaaf927d8f8b59c4d91e8844895e008ff8cf307b7dc15fd31881343",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "identity-23",
+    "version": 1,
+    "primarySkillId": "identity.governance.costs",
+    "familyId": "identity-23",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Portal Navigation Tips / Cost Management",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "sha256": "76a205559e6a8bb21eebc9df5ae0513b370dd7bcccc91e7f3d2d98b30a2c6ff6",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-05",
+    "version": 1,
+    "primarySkillId": "storage.accounts.redundancy",
+    "familyId": "storage-01",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / Redundancy Options",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "sha256": "a54e7905312d82b34ab58762d08790e4c0c2d8fbd28cd68a4e6fb52533a9a227",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-06",
+    "version": 1,
+    "primarySkillId": "storage.accounts.redundancy",
+    "familyId": "storage-01",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / Redundancy Options",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "sha256": "a54e7905312d82b34ab58762d08790e4c0c2d8fbd28cd68a4e6fb52533a9a227",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-07",
+    "version": 1,
+    "primarySkillId": "storage.accounts.redundancy",
+    "familyId": "storage-01",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / Redundancy Options",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "sha256": "a54e7905312d82b34ab58762d08790e4c0c2d8fbd28cd68a4e6fb52533a9a227",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-08",
+    "version": 1,
+    "primarySkillId": "storage.data.tiers",
+    "familyId": "storage-08",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / Blob Access Tiers",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
+      "sha256": "806b1f744eb2b32e9acb97599edb5a5830efde77c7ffecd4b93b1a43d004b361",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-09",
+    "version": 1,
+    "primarySkillId": "storage.data.tiers",
+    "familyId": "storage-09",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / Blob Access Tiers",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
+      "sha256": "806b1f744eb2b32e9acb97599edb5a5830efde77c7ffecd4b93b1a43d004b361",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-10",
+    "version": 1,
+    "primarySkillId": "storage.access.keys",
+    "familyId": "storage-10",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 2 / Manage Access Keys",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage",
+      "sha256": "51ba1ccf8de6f80583f8470664d4bc2f3d10fe0bb7a71874effa5c1d3b58a5cd",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-11",
+    "version": 1,
+    "primarySkillId": "storage.access.sas",
+    "familyId": "storage-11",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / Storage Commands",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+      "sha256": "bb8b9570df54d4bc7676dd52701cdc18c8c0a97944879d7709b96845587a0389",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-12",
+    "version": 1,
+    "primarySkillId": "storage.access.firewalls",
+    "familyId": "storage-12",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 2 / Configure Storage Firewall",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+      "sha256": "d29974a99e712e0616ea03e25caaadde6ac84c460724c940ba0e7615ce111cb8",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-13",
+    "version": 1,
+    "primarySkillId": "storage.accounts.encryption",
+    "familyId": "storage-13",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 1 / Bicep Template",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption",
+      "sha256": "a951305217d90ab1c5fa126a7e9467038b1f0b3bb79049ff51ee910eaac3b37e",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-14",
+    "version": 1,
+    "primarySkillId": "storage.data.containers",
+    "familyId": "storage-14",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 3 / Create Containers with Different Access Levels",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure",
+      "sha256": "d72cbe4abd08eb2afe5a528480094b4ab49850292fbf208b9839f4d8ffd347b9",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-15",
+    "version": 1,
+    "primarySkillId": "storage.accounts.tools",
+    "familyId": "storage-15",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / AzCopy Commands",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+      "sha256": "cd4ae7ac72c7226bce5a97036d53b6fca9787a341cca5963d8e8114c8cc6fc17",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-16",
+    "version": 1,
+    "primarySkillId": "storage.accounts.tools",
+    "familyId": "storage-16",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Storage / AzCopy Commands",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10",
+      "sha256": "cd4ae7ac72c7226bce5a97036d53b6fca9787a341cca5963d8e8114c8cc6fc17",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-17",
+    "version": 1,
+    "primarySkillId": "storage.data.blob-delete",
+    "familyId": "storage-17",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 3 / Configure Soft Delete for Blobs and Containers",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-container-overview",
+      "sha256": "aeb4a2c326e5b224a240b7483198d212848e614c663042dc1d7fa9390d326181",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "storage-18",
+    "version": 1,
+    "primarySkillId": "storage.access.firewalls",
+    "familyId": "storage-18",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 2 / Configure Storage Firewall",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security",
+      "sha256": "d29974a99e712e0616ea03e25caaadde6ac84c460724c940ba0e7615ce111cb8",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-05",
+    "version": 1,
+    "primarySkillId": "compute.templates.interpret",
+    "familyId": "compute-05",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Key Study Areas / Bicep/ARM",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview",
+      "sha256": "049fdca595ea8f5690fb1244ea663152ddc5dab5892fcdb31f5376aec92b1010",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-06",
+    "version": 1,
+    "primarySkillId": "compute.templates.bicep",
+    "familyId": "compute-06",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 1 / Bicep Template",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters",
+      "sha256": "cb24168cc806ece4675f1f338549647f3cce49078554cce0b829a1f63d2e996b",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-07",
+    "version": 1,
+    "primarySkillId": "compute.templates.deploy",
+    "familyId": "compute-07",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Key Study Areas / Bicep/ARM",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli",
+      "sha256": "862982f87bce0bb1a1e7822039fc6a2b16795755f33a2e1b9da293e50380b711",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-08",
+    "version": 1,
+    "primarySkillId": "compute.templates.deploy",
+    "familyId": "compute-08",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Key Study Areas / Bicep/ARM",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+      "sha256": "dcff54c407f0cf16441cdbaa297684509799019a493914f40a643df1708abccd",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-09",
+    "version": 1,
+    "primarySkillId": "compute.templates.export",
+    "familyId": "compute-09",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Key Study Areas / Bicep/ARM",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile",
+      "sha256": "082903b4349c1b291028b04336b5095568f97b0478562e0062c2847d4719c2f3",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-10",
+    "version": 1,
+    "primarySkillId": "compute.templates.interpret",
+    "familyId": "compute-10",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 1 / Bicep Template",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts",
+      "sha256": "dc71aaf36a9ef42a294d1f2ccb5d2950299644a2f6b6000f75cf057e6a92fb8e",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-11",
+    "version": 1,
+    "primarySkillId": "compute.templates.arm",
+    "familyId": "compute-11",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/practice-questions/az104-practice-questions.md",
+    "sourceSection": "Storage / Question 5",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-deployment#parameters",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-deployment#parameters",
+      "sha256": "28eace11d5b10337e1aee9997e3aa6476de7de613d25c1aa3b1155bf375e30b0",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-12",
+    "version": 1,
+    "primarySkillId": "compute.vms.create",
+    "familyId": "compute-12",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Pitfalls / stopped vs deallocated",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
+      "sha256": "cd07172dc0ee93d3e487731c43266e56c9d9e98489c4e388c0958b00d145aa5d",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-13",
+    "version": 1,
+    "primarySkillId": "compute.vms.sizes",
+    "familyId": "compute-size-categories",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / VM Sizes Series",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview",
+      "sha256": "99f78a29d831740991132dd512f44adc51df9f122041969ad4b0f6224c3754e5",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-14",
+    "version": 1,
+    "primarySkillId": "compute.vms.sizes",
+    "familyId": "compute-size-categories",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / VM Sizes Series",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview",
+      "sha256": "99f78a29d831740991132dd512f44adc51df9f122041969ad4b0f6224c3754e5",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-15",
+    "version": 1,
+    "primarySkillId": "compute.vms.scalesets",
+    "familyId": "compute-15",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / VM Commands",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview",
+      "sha256": "b6c1b74a9ada0d4714b75ca1327f39ee4e3c9c863febefb09fd267eca25651e7",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-16",
+    "version": 1,
+    "primarySkillId": "compute.vms.disks",
+    "familyId": "compute-16",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/troubleshooting/common-scenarios.md",
+    "sourceSection": "Scenario 9 / VM Performance Issues",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview",
+      "sha256": "0e7879205145093bdd08c0fbd3db0598c6db5879dca1830de28df7949d54756f",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-17",
+    "version": 1,
+    "primarySkillId": "compute.vms.availability",
+    "familyId": "availability-set-domains",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / Availability Options",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+      "sha256": "029a40e95a199c4fae2afd7df8eb0cfdaec2f2c8a6ce8ad5495da74f8b39f77f",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-18",
+    "version": 1,
+    "primarySkillId": "compute.vms.availability",
+    "familyId": "availability-set-domains",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / Availability Options",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview",
+      "sha256": "029a40e95a199c4fae2afd7df8eb0cfdaec2f2c8a6ce8ad5495da74f8b39f77f",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-19",
+    "version": 1,
+    "primarySkillId": "compute.apps.plan",
+    "familyId": "compute-19",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / App Service",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+      "sha256": "30573ce094055bc3b8b840cdae4fb07c1ab3018dcea551c130c7bbd03da0746c",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-20",
+    "version": 1,
+    "primarySkillId": "compute.apps.scaling",
+    "familyId": "app-service-scaling",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / App Service",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+      "sha256": "8a5e540c54d843adbd01caeeda3a60435b28a4f17120ad531e868be0bb754353",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-21",
+    "version": 1,
+    "primarySkillId": "compute.apps.scaling",
+    "familyId": "app-service-scaling",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Compute / App Service",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans",
+      "sha256": "30573ce094055bc3b8b840cdae4fb07c1ab3018dcea551c130c7bbd03da0746c",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-22",
+    "version": 1,
+    "primarySkillId": "compute.containers.instances",
+    "familyId": "compute-22",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/practice-questions/az104-practice-questions.md",
+    "sourceSection": "Compute / Container Instances overview",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups",
+      "sha256": "ee568c95738277da7ae94118677b622985f5c332ded704f7164629f775b94bde",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-23",
+    "version": 1,
+    "primarySkillId": "compute.templates.bicep",
+    "familyId": "compute-23",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/storage/lab01-storage-accounts-blob.md",
+    "sourceSection": "Exercise 1 / Bicep Template",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview",
+      "sha256": "049fdca595ea8f5690fb1244ea663152ddc5dab5892fcdb31f5376aec92b1010",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "compute-24",
+    "version": 1,
+    "primarySkillId": "compute.vms.disks",
+    "familyId": "compute-24",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Pitfalls / stopped vs deallocated",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing",
+      "sha256": "cd07172dc0ee93d3e487731c43266e56c9d9e98489c4e388c0958b00d145aa5d",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-05",
+    "version": 1,
+    "primarySkillId": "networking.networks.create",
+    "familyId": "networking-05",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Networking / Reserved Azure IPs",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+      "sha256": "62b42c01cbda8c1f5f61ea241a8f2c476a402233604f63829d70e04700f4b199",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-06",
+    "version": 1,
+    "primarySkillId": "networking.networks.peering",
+    "familyId": "networking-06",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/troubleshooting/common-scenarios.md",
+    "sourceSection": "Scenario 10 / VNet Peering Not Working",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+      "sha256": "62b42c01cbda8c1f5f61ea241a8f2c476a402233604f63829d70e04700f4b199",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-07",
+    "version": 1,
+    "primarySkillId": "networking.networks.peering",
+    "familyId": "networking-07",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Key Study Areas / VNet Peering",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq",
+      "sha256": "62b42c01cbda8c1f5f61ea241a8f2c476a402233604f63829d70e04700f4b199",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-08",
+    "version": 1,
+    "primarySkillId": "networking.security.effective",
+    "familyId": "networking-08",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Networking / Network Security Groups",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
+      "sha256": "d685f78d24bbe136a93d9c40f62fc2eaad619f9ba2a8750d0cea076f95cf0a47",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-09",
+    "version": 1,
+    "primarySkillId": "networking.security.effective",
+    "familyId": "networking-09",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/networking/lab01-virtual-networks-nsg.md",
+    "sourceSection": "Exercise 2 / View Effective Security Rules",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works",
+      "sha256": "469f0135b4bc8ff153a32d9d171534470e94ed6c5740b64d3465344a464de602",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-10",
+    "version": 1,
+    "primarySkillId": "networking.security.groups",
+    "familyId": "networking-10",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Common Pitfalls / NSGs are stateful",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
+      "sha256": "d685f78d24bbe136a93d9c40f62fc2eaad619f9ba2a8750d0cea076f95cf0a47",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-11",
+    "version": 1,
+    "primarySkillId": "networking.security.groups",
+    "familyId": "networking-11",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/networking/lab01-virtual-networks-nsg.md",
+    "sourceSection": "Exercise 3 / Configure Application Security Groups",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups",
+      "sha256": "31fb6892c82844e56e706d109a4330c390db186132f35739dc1adfd512d4627c",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-12",
+    "version": 1,
+    "primarySkillId": "networking.security.groups",
+    "familyId": "networking-12",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Networking / Service Tags",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview",
+      "sha256": "b8df5830ef394281e0b80f19b19a5713df00d1e64cb6d5546bb9bbe1f8708c7e",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-13",
+    "version": 1,
+    "primarySkillId": "networking.networks.routes",
+    "familyId": "networking-13",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Key Study Areas / VNet Peering",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+      "sha256": "5b0eb1404863b4c4d0fb88e9b07139d7344f9d6f8028696c394db7f2a2ff5e48",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-14",
+    "version": 1,
+    "primarySkillId": "networking.networks.routes",
+    "familyId": "networking-14",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/networking/lab01-virtual-networks-nsg.md",
+    "sourceSection": "Exercise 5 / Configure User-Defined Routes",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
+      "sha256": "5b0eb1404863b4c4d0fb88e9b07139d7344f9d6f8028696c394db7f2a2ff5e48",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-15",
+    "version": 1,
+    "primarySkillId": "networking.dns.dns",
+    "familyId": "networking-15",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/troubleshooting/common-scenarios.md",
+    "sourceSection": "Scenario 11 / DNS Resolution Failures",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+      "sha256": "3cbc40fe8aa4f73cb8705e6f1a8525d9ea09203a6e6874ed77bd7bda4a2134de",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-16",
+    "version": 1,
+    "primarySkillId": "networking.dns.dns",
+    "familyId": "networking-16",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/troubleshooting/common-scenarios.md",
+    "sourceSection": "Scenario 11 / DNS Resolution Failures",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
+      "sha256": "3cbc40fe8aa4f73cb8705e6f1a8525d9ea09203a6e6874ed77bd7bda4a2134de",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-17",
+    "version": 1,
+    "primarySkillId": "networking.dns.balancer",
+    "familyId": "networking-17",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Networking / Load Balancer vs Application Gateway",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
+      "sha256": "f5c5f5f91cbd969082bca2f19072cdbe904fc66454542e2dc451fde1fcd96708",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-18",
+    "version": 1,
+    "primarySkillId": "networking.dns.balancer",
+    "familyId": "networking-18",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Networking / Load Balancer vs Application Gateway",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
+      "sha256": "f5c5f5f91cbd969082bca2f19072cdbe904fc66454542e2dc451fde1fcd96708",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-19",
+    "version": 1,
+    "primarySkillId": "networking.dns.troubleshoot",
+    "familyId": "networking-19",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/troubleshooting/common-scenarios.md",
+    "sourceSection": "Scenario 12 / Load Balancer Health Probe Failing",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview",
+      "sha256": "8bbf3f2a9ccb4e6048049200f589fd082cc506a7db914360bdb240265f76604b",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "networking-20",
+    "version": 1,
+    "primarySkillId": "networking.networks.troubleshoot",
+    "familyId": "networking-20",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/labs/networking/lab01-virtual-networks-nsg.md",
+    "sourceSection": "Exercise 6 / Use Network Watcher",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview",
+      "sha256": "8cdd968faf2cab65f8269c617ca530ab584f41d472c35bc2f47a08d342639c18",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-05",
+    "version": 1,
+    "primarySkillId": "monitoring.monitor.logs",
+    "familyId": "monitoring-05",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Monitoring / Monitoring Commands",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings",
+      "sha256": "3c2af395077a6c3cd2a9b9081988c9db8f8f43ddb387eed0a828e60f5b8f777d",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-06",
+    "version": 1,
+    "primarySkillId": "monitoring.monitor.logs",
+    "familyId": "monitoring-06",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Monitoring / Monitoring Commands",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-virtual-machine",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-virtual-machine",
+      "sha256": "8655b3ae51293a9ac78634fdee3c71e858e9802813326abef66a07bac0b10422",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-07",
+    "version": 1,
+    "primarySkillId": "monitoring.monitor.logs",
+    "familyId": "monitoring-07",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Monitoring / Resource changes",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log",
+      "sha256": "b0b154bf6948c1cdda30cf47324fc03c3e3671eceed7194c2364cd58fd2e2c0e",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-08",
+    "version": 1,
+    "primarySkillId": "monitoring.monitor.alerts",
+    "familyId": "monitoring-08",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/practice-questions/az104-scenario-questions.md",
+    "sourceSection": "Scenario 9.1",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+      "sha256": "c1965f5f0e14cbef872f0ddda3c87c873c59b8f7420e29ec6b46c43adccf0c6f",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-09",
+    "version": 1,
+    "primarySkillId": "monitoring.monitor.queries",
+    "familyId": "monitoring-09",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Monitoring / Common KQL Queries",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+      "sha256": "d7dc9e8986757c8d22cb394d949384eb8a21331aa2c67af2b89774907447ae6a",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-10",
+    "version": 1,
+    "primarySkillId": "monitoring.monitor.queries",
+    "familyId": "monitoring-10",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Monitoring / Common KQL Queries",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+      "sha256": "d7dc9e8986757c8d22cb394d949384eb8a21331aa2c67af2b89774907447ae6a",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-11",
+    "version": 1,
+    "primarySkillId": "monitoring.backup.recovery-vault",
+    "familyId": "monitoring-11",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Monitoring / Backup & Recovery",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault",
+      "sha256": "ac546a97452b1a734fcc5c1c697b89d94aaea89b1e10a627ea54aebd265c914b",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-12",
+    "version": 1,
+    "primarySkillId": "monitoring.backup.policy",
+    "familyId": "monitoring-12",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/practice-questions/az104-scenario-questions.md",
+    "sourceSection": "Scenario 10.1",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
+      "sha256": "d25c91e42301772f53ab1aea199c47371bc62edd8c14806097eadbe83ad336f7",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-13",
+    "version": 1,
+    "primarySkillId": "monitoring.backup.site-recovery",
+    "familyId": "monitoring-13",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/practice-questions/az104-scenario-questions.md",
+    "sourceSection": "Scenario 10.1",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
+      "sha256": "a5018f93edfd11c2abb4e0344adf687f9e5cc11ad1a40f582b5eba753598c64e",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-14",
+    "version": 1,
+    "primarySkillId": "monitoring.backup.failover",
+    "familyId": "monitoring-14",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/practice-questions/az104-scenario-questions.md",
+    "sourceSection": "Scenario 10 / Backup and Disaster Recovery",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
+      "sha256": "a5018f93edfd11c2abb4e0344adf687f9e5cc11ad1a40f582b5eba753598c64e",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  },
+  {
+    "questionId": "monitoring-15",
+    "version": 1,
+    "primarySkillId": "monitoring.monitor.metrics",
+    "familyId": "monitoring-15",
+    "sourceUrl": "https://github.com/timothywarner/az104/blob/5f440153d0c835b8ba9f38353287e7ef1df65259/quick-reference/az104-cheat-sheet.md",
+    "sourceSection": "Monitoring / Azure Monitor Components",
+    "documentation": {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/data-platform-metrics",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/data-platform-metrics",
+      "sha256": "bcd008957db1343edb8329c9bc1a5371b37b260d88bccebcc85437fcfcf24c9b",
+      "status": "retrieved"
+    },
+    "reviewedAt": "2026-09-06",
+    "reviewBasis": "Editorial comparison of answer and distractors with current Microsoft documentation; no Azure deployment executed."
+  }
+]

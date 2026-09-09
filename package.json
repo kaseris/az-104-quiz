@@ -1,0 +1,57 @@
+{
+  "name": "az104-study-desk",
+  "productName": "AZ-104 Study Desk",
+  "version": "0.5.0",
+  "private": true,
+  "description": "An offline-first desktop study companion for AZ-104.",
+  "type": "module",
+  "main": "electron/main.js",
+  "engines": {
+    "node": ">=24.4.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "vite build",
+    "start": "npm run build && electron .",
+    "lint": "eslint .",
+    "test": "node --test tests/*.test.js",
+    "test:e2e": "npm run build && playwright test",
+    "check": "npm run lint && npm test && npm run build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "audit:documents": "node scripts/audit-documents.mjs",
+    "package": "npm run build && electron-builder --publish never",
+    "package:mac": "npm run package -- --mac",
+    "package:win": "npm run package -- --win --x64",
+    "test:packaged": "node scripts/packaged-smoke.mjs",
+    "benchmark": "node scripts/benchmark.mjs",
+    "notices": "node scripts/notices.mjs"
+  },
+  "dependencies": {
+    "ipaddr.js": "^2.5.0",
+    "lucide-react": "1.41.0",
+    "openai": "7.10.0",
+    "parse5": "^8.0.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "electron": "44.2.0",
+    "electron-builder": "26.15.3",
+    "eslint": "9.39.1",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.0.1",
+    "globals": "17.4.0",
+    "prettier": "3.9.6",
+    "vite": "8.2.2"
+  },
+  "author": "Michalis Kaseris",
+  "license": "MIT",
+  "homepage": "https://github.com/kaseris/az-104-quiz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaseris/az-104-quiz.git"
+  }
+}

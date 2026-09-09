@@ -1,0 +1,140 @@
+[
+  {
+    "id": "identity.governance.subscriptions",
+    "title": "Manage subscriptions",
+    "objectiveId": "identity.governance",
+    "domainId": "identity"
+  },
+  {
+    "id": "storage.access.files-identity",
+    "title": "Configure identity-based Azure Files access",
+    "objectiveId": "storage.access",
+    "domainId": "storage"
+  },
+  {
+    "id": "storage.accounts.create",
+    "title": "Create storage accounts",
+    "objectiveId": "storage.accounts",
+    "domainId": "storage"
+  },
+  {
+    "id": "storage.accounts.replication",
+    "title": "Configure object replication",
+    "objectiveId": "storage.accounts",
+    "domainId": "storage"
+  },
+  {
+    "id": "storage.data.shares",
+    "title": "Configure file shares",
+    "objectiveId": "storage.data",
+    "domainId": "storage"
+  },
+  {
+    "id": "storage.data.file-snapshots",
+    "title": "Configure file snapshots and soft delete",
+    "objectiveId": "storage.data",
+    "domainId": "storage"
+  },
+  {
+    "id": "storage.data.versioning",
+    "title": "Configure blob versioning",
+    "objectiveId": "storage.data",
+    "domainId": "storage"
+  },
+  {
+    "id": "compute.vms.encryption",
+    "title": "Configure host encryption",
+    "objectiveId": "compute.vms",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.vms.move",
+    "title": "Move virtual machines",
+    "objectiveId": "compute.vms",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.containers.registry",
+    "title": "Manage container registries",
+    "objectiveId": "compute.containers",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.containers.apps",
+    "title": "Provision Container Apps",
+    "objectiveId": "compute.containers",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.containers.scaling",
+    "title": "Manage container sizing and scaling",
+    "objectiveId": "compute.containers",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.apps.create",
+    "title": "Create App Service",
+    "objectiveId": "compute.apps",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.apps.tls",
+    "title": "Configure certificates and TLS",
+    "objectiveId": "compute.apps",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.apps.dns",
+    "title": "Map custom DNS",
+    "objectiveId": "compute.apps",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.apps.backup",
+    "title": "Configure backups",
+    "objectiveId": "compute.apps",
+    "domainId": "compute"
+  },
+  {
+    "id": "compute.apps.networking",
+    "title": "Configure networking",
+    "objectiveId": "compute.apps",
+    "domainId": "compute"
+  },
+  {
+    "id": "networking.networks.public-ip",
+    "title": "Configure public IPs",
+    "objectiveId": "networking.networks",
+    "domainId": "networking"
+  },
+  {
+    "id": "networking.security.bastion",
+    "title": "Implement Bastion",
+    "objectiveId": "networking.security",
+    "domainId": "networking"
+  },
+  {
+    "id": "networking.security.service-endpoints",
+    "title": "Configure service endpoints",
+    "objectiveId": "networking.security",
+    "domainId": "networking"
+  },
+  {
+    "id": "monitoring.monitor.watcher",
+    "title": "Use Network Watcher and Connection monitor",
+    "objectiveId": "monitoring.monitor",
+    "domainId": "monitoring"
+  },
+  {
+    "id": "monitoring.backup.backup-vault",
+    "title": "Create Backup vaults",
+    "objectiveId": "monitoring.backup",
+    "domainId": "monitoring"
+  },
+  {
+    "id": "monitoring.backup.reports",
+    "title": "Interpret backup reports and alerts",
+    "objectiveId": "monitoring.backup",
+    "domainId": "monitoring"
+  }
+]
