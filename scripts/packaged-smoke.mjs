@@ -87,6 +87,13 @@ try {
     app = await electron.launch({ executablePath, env, cwd: dirname(executablePath) });
     const page = await app.firstWindow();
     await page.waitForLoadState('domcontentloaded');
+    const state = await page.evaluate(() => window.study.getState());
+    if (!state.onboarded)
+      await page.getByRole('button', { name: 'Continue without AI' }).waitFor();
+    else await page.getByRole('button', { name: 'Settings & sources', exact: true }).waitFor();
+    const startupMs = Math.round(performance.now() - start);
+    console.log(JSON.stringify({ pass, startupMs }));
+    assert.ok(startupMs < 5000, `Usable startup exceeded 5 seconds: ${startupMs}`);
     const runtime = await app.evaluate(({ app, safeStorage }) => ({
       packaged: app.isPackaged,
       path: app.getPath('userData'),
@@ -109,7 +116,6 @@ try {
         appPath: await app.evaluate(({ app }) => app.getAppPath()),
       }),
     );
-    const state = await page.evaluate(() => window.study.getState());
     if (pass === 0 && runtime.safe)
       await page.evaluate(() =>
         window.study.saveKey({ key: 'ci-only-storage-placeholder', sessionConsent: true }),
@@ -172,8 +178,6 @@ try {
       );
     }
     assert.equal(persisted.diagnostics.appVersion, '0.5.0');
-    const duration = performance.now() - start;
-    assert.ok(duration < 5000, `Startup exceeded 5 seconds: ${duration}`);
     const isolation = await page.evaluate(() => ({
       node: typeof window.require,
       csp: document.querySelector('meta[http-equiv="Content-Security-Policy"]').content,
@@ -191,7 +195,8 @@ try {
     });
     report.checks.push({
       pass,
-      startupMs: Math.round(duration),
+      startupMs,
+      workflowMs: Math.round(performance.now() - start),
       secureStorage: runtime.safe,
       profilePreserved: true,
       offlineLocalData: true,
