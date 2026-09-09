@@ -19,6 +19,11 @@ test('data management previews, exports, resets and imports through trusted file
     await page.getByRole('button', { name: 'Continue without AI' }).click();
     const quiz = await page.evaluate(() => window.study.start({ count: 5 }));
     await page.getByRole('button', { name: 'Settings & sources', exact: true }).click();
+    await page.screenshot({
+      path: 'test-results/data-management.png',
+      fullPage: true,
+      animations: 'disabled',
+    });
     await page.getByRole('button', { name: 'Preview export', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Save portable export' })).toBeVisible();
     const path = join(root, 'export.json');

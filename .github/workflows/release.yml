@@ -56,12 +56,8 @@ jobs:
         run: npm run package -- --${{ matrix.platform }} --${{ matrix.arch }}
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-      - name: Verify packaged executable on macOS
-        if: runner.os == 'macOS'
-        run: npm run test:packaged -- "release/${{ matrix.folder }}/AZ-104 Study Desk.app/Contents/MacOS/AZ-104 Study Desk"
-      - name: Verify packaged executable on Windows
-        if: runner.os == 'Windows'
-        run: npm run test:packaged -- "release/win-unpacked/AZ-104 Study Desk.exe"
+      - name: Verify installation, replacement and packaged application
+        run: npm run test:packaged
       - name: Preserve macOS application for compatibility tests
         if: runner.os == 'macOS'
         run: ditto -c -k --sequesterRsrc --keepParent "release/${{ matrix.folder }}/AZ-104 Study Desk.app" "release/compatibility-${{ matrix.arch }}.zip"

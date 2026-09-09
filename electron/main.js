@@ -38,6 +38,7 @@ let provider;
 let tutor;
 let generation;
 let window;
+const diagnosticErrors = [];
 
 function register(channel, operation) {
   ipcMain.handle(channel, async (event, payload) => {
@@ -50,6 +51,13 @@ function register(channel, operation) {
         throw new Error('Untrusted application request.');
       return { ok: true, value: await operation(payload) };
     } catch (error) {
+      diagnosticErrors.push({
+        operation: channel,
+        category:
+          error instanceof ProviderError ? 'provider' : error.code ? 'storage' : 'validation',
+        at: new Date().toISOString(),
+      });
+      if (diagnosticErrors.length > 20) diagnosticErrors.shift();
       // Return controlled validation messages, never filesystem details or raw provider errors.
       return {
         ok: false,
@@ -150,6 +158,7 @@ else {
         reader,
         tutor,
         filename: join(directory, 'study.sqlite'),
+        diagnosticErrors: () => [...diagnosticErrors],
       });
       for (const method of ['preview', 'create', 'list', 'open', 'dismiss'])
         register(`labAdaptations:${method}`, (payload) =>

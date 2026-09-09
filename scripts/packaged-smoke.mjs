@@ -1,7 +1,8 @@
 import { _electron as electron } from 'playwright';
 import assert from 'node:assert/strict';
+import { installer } from './installer.mjs';
 import { homedir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { join, resolve, dirname } from 'node:path';
 import { existsSync, mkdirSync, rmSync, writeFileSync, readdirSync } from 'node:fs';
 import { StudyStore } from '../electron/store.js';
 import { LabStore } from '../electron/labs.js';
@@ -17,19 +18,10 @@ assert.equal(
   'true',
   'Packaged tests require a disposable CI account; never run against a personal profile.',
 );
-const defaultExecutable =
-  process.platform === 'darwin'
-    ? join(
-        'release',
-        process.arch === 'arm64' ? 'mac-arm64' : 'mac',
-        'AZ-104 Study Desk.app',
-        'Contents',
-        'MacOS',
-        'AZ-104 Study Desk',
-      )
-    : join('release', 'win-unpacked', 'AZ-104 Study Desk.exe');
+const installation = process.argv[2] || process.env.AZ104_PACKAGED_EXECUTABLE ? null : installer();
+installation?.install();
 const executablePath = resolve(
-  process.argv[2] || process.env.AZ104_PACKAGED_EXECUTABLE || defaultExecutable,
+  process.argv[2] || process.env.AZ104_PACKAGED_EXECUTABLE || installation.executable,
 );
 assert.ok(existsSync(executablePath), 'Packaged executable is missing.');
 const profile =
@@ -92,7 +84,7 @@ const report = {
 try {
   for (let pass = 0; pass < 2; pass++) {
     const start = performance.now();
-    app = await electron.launch({ executablePath, env });
+    app = await electron.launch({ executablePath, env, cwd: dirname(executablePath) });
     const page = await app.firstWindow();
     await page.waitForLoadState('domcontentloaded');
     const runtime = await app.evaluate(({ app, safeStorage }) => ({
@@ -119,7 +111,7 @@ try {
       assert.equal(state.credentials.hasKey, true);
       const restored = await app.evaluate(
         async ({ safeStorage }, file) => {
-          const fs = await import('node:fs');
+          const fs = process.getBuiltinModule('fs');
           return safeStorage.decryptString(fs.readFileSync(file));
         },
         join(profile, 'openai-key.enc'),
@@ -199,6 +191,7 @@ try {
     });
     await app.close();
     app = null;
+    if (pass === 0) installation?.install();
   }
   const reopened = new StudyStore(join(profile, 'study.sqlite'));
   assert.equal(reopened.session(session.id).items.length, 5);
@@ -211,4 +204,5 @@ try {
 } finally {
   if (app) await app.close();
   rmSync(profile, { recursive: true, force: true });
+  installation?.cleanup();
 }

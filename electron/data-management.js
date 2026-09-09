@@ -16,9 +16,11 @@ export function registerDataManagement({
   reader,
   tutor,
   filename,
+  diagnosticErrors,
 }) {
   const data = new Portability(store, {
     filename,
+    diagnosticErrors,
     appVersion: app.getVersion(),
     runtime: {
       electron: process.versions.electron,

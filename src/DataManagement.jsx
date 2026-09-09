@@ -42,6 +42,7 @@ export default function DataManagement() {
           records, but no stored API key. Keep them private. Restore only while the app is closed.
         </p>
         <button
+          className="secondary"
           onClick={() =>
             run(async () => {
               const r = await api.data.backup();
@@ -79,6 +80,7 @@ export default function DataManagement() {
           Include personal lab notes, command output and reflection text
         </label>
         <button
+          className="secondary"
           onClick={() => run(async () => setExportPreview(await api.data.exportPreview(options)))}
         >
           Preview export
@@ -87,6 +89,7 @@ export default function DataManagement() {
           <>
             <pre className="context-excerpt">{JSON.stringify(exportPreview, null, 2)}</pre>
             <button
+              className="secondary"
               onClick={() =>
                 run(async () => {
                   const r = await api.data.exportSave(options);
@@ -107,6 +110,7 @@ export default function DataManagement() {
           size: 256 MiB.
         </p>
         <button
+          className="secondary"
           onClick={() =>
             run(async () => {
               setConfirm(false);
@@ -137,6 +141,7 @@ export default function DataManagement() {
               I reviewed the additive merge and recovery backup policy
             </label>
             <button
+              className="secondary"
               disabled={!preview.canApply || !confirm}
               onClick={() =>
                 run(async () => {
@@ -162,6 +167,7 @@ export default function DataManagement() {
           you remove those files yourself.
         </p>
         <button
+          className="secondary"
           onClick={() =>
             run(async () => {
               const r = await api.labs.list();
@@ -174,6 +180,7 @@ export default function DataManagement() {
           Remove personal lab evidence
         </button>
         <button
+          className="secondary"
           onClick={() => {
             setErase('study');
             setConfirm(false);
@@ -220,6 +227,7 @@ export default function DataManagement() {
               I understand this deletion and the recovery backup
             </label>
             <button
+              className="secondary"
               disabled={!confirm || (erase === 'labEvidence' && !attempt)}
               onClick={() =>
                 run(async () => {
@@ -234,7 +242,9 @@ export default function DataManagement() {
             >
               Confirm deletion
             </button>
-            <button onClick={() => setErase('')}>Cancel</button>
+            <button className="secondary" onClick={() => setErase('')}>
+              Cancel
+            </button>
           </div>
         )}
       </fieldset>
@@ -244,13 +254,17 @@ export default function DataManagement() {
           Inspect versions and storage counts before saving. No prompts, history text, credentials
           or telemetry are included.
         </p>
-        <button onClick={() => run(async () => setDiagnostics(await api.data.diagnostics()))}>
+        <button
+          className="secondary"
+          onClick={() => run(async () => setDiagnostics(await api.data.diagnostics()))}
+        >
           Inspect diagnostics
         </button>
         {diagnostics && (
           <>
             <pre className="context-excerpt">{JSON.stringify(diagnostics, null, 2)}</pre>
             <button
+              className="secondary"
               onClick={() =>
                 run(async () => {
                   const r = await api.data.diagnosticsSave();

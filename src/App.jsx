@@ -313,7 +313,7 @@ export default function App() {
             Settings & sources
           </button>
           <div className="sidebar-version">
-            STUDY DESK <span>v0.5 · Targeted practice</span>
+            STUDY DESK <span>v0.5 · Unsigned preview</span>
           </div>
         </div>
       </aside>

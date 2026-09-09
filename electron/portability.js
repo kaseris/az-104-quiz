@@ -103,12 +103,16 @@ function normalized(row) {
   );
 }
 export class Portability {
-  constructor(store, { filename, appVersion = '0.5.0', runtime = {} } = {}) {
+  constructor(
+    store,
+    { filename, appVersion = '0.5.0', runtime = {}, diagnosticErrors = () => [] } = {},
+  ) {
     this.store = store;
     this.db = store.db;
     this.filename = filename;
     this.appVersion = appVersion;
     this.runtime = runtime;
+    this.diagnosticErrors = diagnosticErrors;
   }
   backup(destination) {
     ensure(
@@ -676,7 +680,7 @@ export class Portability {
       databaseBytes:
         this.filename && this.filename !== ':memory:' ? statSync(this.filename).size : 0,
       counts,
-      errorCodes: [],
+      errors: this.diagnosticErrors(),
       telemetry: false,
     };
   }
