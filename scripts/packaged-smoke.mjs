@@ -2,7 +2,7 @@ import { _electron as electron } from 'playwright';
 import assert from 'node:assert/strict';
 import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync, readdirSync } from 'node:fs';
 import { StudyStore } from '../electron/store.js';
 import { LabStore } from '../electron/labs.js';
 import { labs } from '../content/labs.js';
@@ -47,6 +47,7 @@ store.db
       createdAt: '2026-09-09',
     }),
   );
+store.db.exec('DROP TABLE portable_messages; DROP TABLE portable_questions; PRAGMA user_version=8');
 store.close();
 const env = {
   ...process.env,
@@ -78,7 +79,26 @@ try {
     assert.equal(runtime.packaged, true);
     assert.equal(runtime.path, profile);
     if (runtime.safe) assert.equal(runtime.encrypted, 'ci-test-placeholder');
+    assert.ok(
+      readdirSync(profile).some((n) => n.includes('.v8.')),
+      'Migration backup missing',
+    );
     const state = await page.evaluate(() => window.study.getState());
+    if (pass === 0 && runtime.safe)
+      await page.evaluate(() =>
+        window.study.saveKey({ key: 'ci-only-storage-placeholder', sessionConsent: true }),
+      );
+    if (pass === 1 && runtime.safe) {
+      assert.equal(state.credentials.hasKey, true);
+      const restored = await app.evaluate(
+        async ({ safeStorage }, file) => {
+          const fs = await import('node:fs');
+          return safeStorage.decryptString(fs.readFileSync(file));
+        },
+        join(profile, 'openai-key.enc'),
+      );
+      assert.equal(restored, 'ci-only-storage-placeholder');
+    }
     assert.ok(state.sessions.some((s) => s.id));
     if (!state.onboarded) await page.getByRole('button', { name: 'Continue without AI' }).click();
     const persisted = await page.evaluate(

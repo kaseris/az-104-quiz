@@ -204,6 +204,7 @@ function Answer({ request, onCitation }) {
         <span className="badge">{request.status}</span>
       </h3>
       <p className="small-muted">
+        {request.status === 'historical' ? 'Imported history; billing was not transferred. ' : ''}
         {request.model} · {request.input_tokens ?? '?'} input / {request.output_tokens ?? '?'}{' '}
         output tokens ·{' '}
         {request.cost == null

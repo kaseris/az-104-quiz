@@ -202,9 +202,20 @@ export class DocumentStore {
     if (!allowed.length) return [];
     return this.db
       .prepare(
-        `SELECT document_id AS documentId, revision, section_id AS sectionId, title, snippet(document_search,4,'','',' … ',24) AS excerpt FROM document_search WHERE document_search MATCH ? AND document_id IN (${allowed.map(() => '?').join(',')}) ORDER BY bm25(document_search,0,0,0,4,1) LIMIT 50`,
+        `SELECT document_id AS documentId, revision, section_id AS sectionId, title, body FROM document_search WHERE document_search MATCH ? AND document_id IN (${allowed.map(() => '?').join(',')}) AND rank MATCH 'bm25(0,0,0,4,1)' ORDER BY rank LIMIT 50`,
       )
-      .all(terms.map((t) => `"${t}"*`).join(' AND '), ...allowed);
+      .all(terms.map((t) => `"${t}"*`).join(' AND '), ...allowed)
+      .map(({ body, ...result }) => {
+        // FTS snippet() examines token windows across entire sections and can stall on long articles.
+        // Rank first, then retain a bounded plain-text excerpt around the first query term.
+        const at = Math.max(0, body.toLocaleLowerCase().indexOf(terms[0].toLocaleLowerCase()));
+        const start = Math.max(0, at - 80),
+          end = Math.min(body.length, start + 320);
+        return {
+          ...result,
+          excerpt: `${start ? '… ' : ''}${body.slice(start, end)}${end < body.length ? ' …' : ''}`,
+        };
+      });
   }
   resolve({ url = '', skillId = '', objectiveId = '' } = {}) {
     const exact = documents.find((d) => d.url === url.split('#')[0]);

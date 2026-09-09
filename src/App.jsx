@@ -141,6 +141,17 @@ export default function App() {
       live = false;
     };
   }, []);
+  useEffect(() => {
+    const reload = () => {
+      setSession(null);
+      api
+        .getState()
+        .then(setState)
+        .catch((e) => setError(e.message));
+    };
+    window.addEventListener('study:data-changed', reload);
+    return () => window.removeEventListener('study:data-changed', reload);
+  }, []);
   async function run(work) {
     if (running.current) return;
     running.current = true;

@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { batch1Labs } from '../content/labs-batch1.js';
 import { renderGuide } from '../scripts/lab-guides.mjs';
@@ -10,7 +11,13 @@ test('draft guides match catalog and Bash blocks parse without execution', () =>
     const guide = readFileSync(new URL(`../docs/LAB_${lab.id}.md`, import.meta.url), 'utf8');
     assert.equal(guide, renderGuide(lab));
     for (const [, command] of guide.matchAll(/```bash\n([\s\S]*?)\n```/g)) {
-      const result = spawnSync('bash', ['-n'], { input: command, encoding: 'utf8' });
+      const result = spawnSync(
+        process.platform === 'win32'
+          ? join(process.env.ProgramFiles || 'C:\\Program Files', 'Git', 'bin', 'bash.exe')
+          : 'bash',
+        ['-n'],
+        { input: command, encoding: 'utf8' },
+      );
       assert.equal(result.status, 0, result.stderr);
     }
   }

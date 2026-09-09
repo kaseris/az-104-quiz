@@ -1,4 +1,5 @@
-import { readFileSync, statSync, writeFileSync } from 'node:fs';
+import { readFileSync, statSync, writeFileSync, realpathSync, renameSync, rmSync } from 'node:fs';
+import { dirname, basename, join, relative, isAbsolute } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { Portability, limits } from './portability.js';
 import { ensure } from './validation.js';
@@ -56,7 +57,20 @@ export function registerDataManagement({
     });
     if (result.canceled) return { cancelled: true };
     // Overwrite consent is handled by the native save dialog. SQLite backups require a new file.
-    writeFileSync(result.filePath, content, { mode: 0o600 });
+    const parent = realpathSync(dirname(result.filePath));
+    const rel = relative(realpathSync(dirname(filename)), parent);
+    ensure(
+      rel && (rel.startsWith('..') || isAbsolute(rel)),
+      'Save exports and diagnostics outside the live profile folder.',
+    );
+    const destination = join(parent, basename(result.filePath));
+    const temporary = join(parent, `.study-export-${randomUUID()}.tmp`);
+    try {
+      writeFileSync(temporary, content, { mode: 0o600, flag: 'wx' });
+      renameSync(temporary, destination);
+    } finally {
+      rmSync(temporary, { force: true });
+    }
     return { saved: true };
   };
   register('data:exportPreview', (options) => {

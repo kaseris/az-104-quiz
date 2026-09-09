@@ -142,6 +142,7 @@ export default function DataManagement() {
                 run(async () => {
                   await api.data.importApply({ token: preview.token, confirmed: true });
                   setPreview(null);
+                  window.dispatchEvent(new Event('study:data-changed'));
                   setMessage(
                     'Import complete. Reopen the app to refresh every view; imported work cannot make paid requests.',
                   );
@@ -224,6 +225,7 @@ export default function DataManagement() {
                 run(async () => {
                   await api.data.erase({ kind: erase, id: attempt, confirmed: true });
                   setErase('');
+                  window.dispatchEvent(new Event('study:data-changed'));
                   setMessage(
                     'Deletion complete. Reopen the app to refresh every view. Recovery backups retain their previous content.',
                   );

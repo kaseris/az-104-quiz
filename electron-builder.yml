@@ -20,7 +20,8 @@ mac:
   category: public.app-category.education
   icon: build/icon.icns
   minimumSystemVersion: '15.0'
-  identity: null
+  identity: '-'
+  hardenedRuntime: false
   notarize: false
   target: dmg
 win:
