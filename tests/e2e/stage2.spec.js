@@ -61,7 +61,8 @@ test('adaptive reasons, confidence, progress, issue resolution, exam drafts and 
     await page.getByLabel('Mode', { exact: true }).selectOption('exam');
     await page.getByRole('button', { name: 'Start exam session' }).click();
     await page.locator('label.answer-option').first().click();
-    await page.getByLabel('Flag for review').check();
+    await page.getByLabel('Flag for review').click();
+    await expect(page.getByLabel('Flag for review')).toBeChecked();
     await page.getByRole('button', { name: 'Question 10: unanswered', exact: true }).click();
     let hidden = await page.evaluate(async () => {
       const st = await window.study.getState();

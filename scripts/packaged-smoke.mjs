@@ -6,6 +6,9 @@ import { existsSync, mkdirSync, rmSync, writeFileSync, readdirSync } from 'node:
 import { StudyStore } from '../electron/store.js';
 import { LabStore } from '../electron/labs.js';
 import { labs } from '../content/labs.js';
+import { questions } from '../content/questions.js';
+import { documents } from '../content/documents.js';
+import { articleHTML } from '../tests/fixtures/reader.js';
 import { DocumentStore } from '../electron/document-store.js';
 import { Tutor } from '../electron/tutor.js';
 
@@ -29,7 +32,18 @@ const lab = new LabStore(store).start({
   method: 'portal',
   preflightReviewed: true,
 });
-const tutor = new Tutor(store, new DocumentStore(store), {});
+const reader = new DocumentStore(store);
+reader.save(
+  documents.find((d) => d.id === 'rbac'),
+  { html: articleHTML() },
+);
+const annotation = reader.annotate({
+  documentId: 'rbac',
+  sectionId: 'rbac:role-assignments',
+  kind: 'bookmark',
+  note: 'Saved packaged bookmark',
+});
+const tutor = new Tutor(store, reader, {});
 const conversation = tutor.create();
 store.db
   .prepare(
@@ -112,6 +126,39 @@ try {
     );
     assert.equal(persisted.lab.id, lab.id);
     assert.equal(persisted.chat.body, 'A saved question');
+    assert.ok(persisted.queue.jobs.some((j) => j.id === 'checkpoint' && j.status === 'paused'));
+    const reading = await page.evaluate(() => window.study.reader.state());
+    assert.ok(
+      reading.annotations.some(
+        (a) => a.id === annotation.id && a.note === 'Saved packaged bookmark',
+      ),
+    );
+    if (pass === 0) {
+      await page.evaluate(
+        async ({ session, questions }) => {
+          for (const item of session.items) {
+            const q = questions.find((q) => q.id === item.question.id);
+            await window.study.submit({
+              sessionId: session.id,
+              questionId: q.id,
+              selectedOptionIds: q.correctOptionIds,
+              durationMs: 1,
+            });
+            await window.study.advance({ sessionId: session.id, questionId: q.id });
+          }
+        },
+        { session, questions },
+      );
+    } else {
+      const completed = await page.evaluate((id) => window.study.session(id), session.id);
+      assert.ok(completed.completedAt);
+      assert.equal(
+        (await page.evaluate(() => window.study.getState())).sessions.find(
+          (s) => s.id === session.id,
+        ).answered,
+        5,
+      );
+    }
     assert.equal(persisted.diagnostics.appVersion, '0.5.0');
     const duration = performance.now() - start;
     assert.ok(duration < 5000, `Startup exceeded 5 seconds: ${duration}`);
