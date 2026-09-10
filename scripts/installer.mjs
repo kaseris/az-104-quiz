@@ -44,8 +44,23 @@ export function installer() {
           stdio: 'pipe',
         });
     },
-    cleanup() {
-      rmSync(target, { recursive: true, force: true, maxRetries: 5, retryDelay: 500 });
+    async cleanup() {
+      // Windows can retain a directory handle briefly after Electron has exited.
+      // Retry the whole removal, including root-directory EPERM failures.
+      for (let attempt = 0; ; attempt++) {
+        try {
+          rmSync(target, { recursive: true, force: true });
+          return;
+        } catch (error) {
+          if (
+            process.platform !== 'win32' ||
+            attempt === 20 ||
+            !['EPERM', 'EBUSY', 'ENOTEMPTY'].includes(error.code)
+          )
+            throw error;
+          await new Promise((resolve) => setTimeout(resolve, 250));
+        }
+      }
     },
   };
 }

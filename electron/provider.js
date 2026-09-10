@@ -1,6 +1,20 @@
-import OpenAI from 'openai';
+import { createRequire } from 'node:module';
 import { randomUUID } from 'node:crypto';
 import { ensure } from './validation.js';
+
+const require = createRequire(import.meta.url);
+// Offline startup does not need the provider SDK. Keep construction synchronous so
+// cancellation/epoch checks and the reservation-to-dispatch boundary remain atomic.
+const createClient = (key) => {
+  const { default: OpenAI } = require('openai/index.mjs');
+  return new OpenAI({
+    apiKey: key,
+    baseURL: 'https://api.openai.com/v1',
+    maxRetries: 0,
+    logLevel: 'off',
+    timeout: 120000,
+  });
+};
 
 export const pricingVersion = 'openai-standard-2026-09-06';
 // USD / million tokens, official model pages checked 2026-09-06. Reserve cache writes too.
@@ -47,21 +61,7 @@ export function providerError(error) {
   );
 }
 export class Provider {
-  constructor(
-    store,
-    credentials,
-    {
-      clientFactory = (key) =>
-        new OpenAI({
-          apiKey: key,
-          baseURL: 'https://api.openai.com/v1',
-          maxRetries: 0,
-          logLevel: 'off',
-          timeout: 120000,
-        }),
-      notify = () => {},
-    } = {},
-  ) {
+  constructor(store, credentials, { clientFactory = createClient, notify = () => {} } = {}) {
     this.store = store;
     this.db = store.db;
     this.credentials = credentials;

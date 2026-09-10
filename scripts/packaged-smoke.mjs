@@ -220,5 +220,5 @@ try {
 } finally {
   if (app) await app.close();
   rmSync(profile, { recursive: true, force: true });
-  installation?.cleanup();
+  await installation?.cleanup();
 }
