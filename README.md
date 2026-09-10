@@ -55,6 +55,7 @@ npm run dev
 npm run check
 npm run test:e2e
 npm run benchmark
+npm run benchmark -- --ui
 npm run package:mac -- --arm64
 npm run package:win
 ```

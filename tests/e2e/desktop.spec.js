@@ -90,6 +90,13 @@ test('offline desktop lifecycle: skip, saved draft, frozen answer, full quiz and
       fullPage: true,
       animations: 'disabled',
     });
+    await page.getByRole('button', { name: 'Overview', exact: true }).click();
+    await expect(
+      page.locator('.stat').filter({ hasText: 'QUESTIONS ANSWERED' }).locator('strong'),
+    ).toHaveText('1');
+    await expect(
+      page.locator('.stat').filter({ hasText: 'ANSWER ACCURACY' }).locator('strong'),
+    ).toHaveText('0%');
     await app.close();
     ({ app, page } = await launch(directory));
     await page.getByRole('button', { name: 'Resume session', exact: true }).click();

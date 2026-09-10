@@ -190,8 +190,23 @@ export default function App() {
     });
   const updateSession = (method, payload) =>
     run(async () => {
-      setSession(await api[method](payload));
-      await refresh();
+      const latest = await api[method](payload);
+      setSession(latest);
+      if (latest.completedAt) await refresh();
+      else
+        setState((current) => ({
+          ...current,
+          sessions: current.sessions.map((summary) =>
+            summary.id === latest.id
+              ? {
+                  ...summary,
+                  answered: latest.mode === 'exam' ? summary.answered : latest.answered,
+                  correct: latest.correct,
+                  timingStatus: latest.timingStatus,
+                }
+              : summary,
+          ),
+        }));
     });
 
   const activeSessionId = session?.id;

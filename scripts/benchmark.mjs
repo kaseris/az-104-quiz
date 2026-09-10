@@ -1,7 +1,7 @@
 import { performance } from 'node:perf_hooks';
 import { mkdtempSync, rmSync, writeFileSync, mkdirSync, statSync } from 'node:fs';
 import { tmpdir, cpus, platform, arch, release } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import assert from 'node:assert/strict';
 import { StudyStore } from '../electron/store.js';
 import { DocumentStore } from '../electron/document-store.js';
@@ -92,7 +92,7 @@ try {
     reader.search({ query: 'role assignment' });
     search.push(performance.now() - t);
   }
-  const session = store.start({ count: 5 }),
+  const session = store.start({ count: 20 }),
     question = session.items[0].question,
     quiz = [];
   for (let i = 0; i < 30; i++) {
@@ -119,12 +119,80 @@ try {
     quizSaveP95Ms: p95(quiz),
     note: 'Store/API timings. Packaged UI startup and visual responsiveness are separately tested.',
   };
+  if (process.argv.includes('--ui')) {
+    store.setSetting('onboarded', true);
+    store.draft({
+      sessionId: session.id,
+      questionId: question.id,
+      selectedOptionIds: [],
+      durationMs: 1,
+    });
+    store.close();
+    store = null;
+    const { _electron: electron } = await import('playwright');
+    const env = { ...process.env, AZ104_DATA_DIR: dir };
+    delete env.ELECTRON_RUN_AS_NODE;
+    delete env.AZ104_DEV_SERVER;
+    const start = performance.now();
+    const app = await electron.launch({ args: [resolve('.')], env });
+    try {
+      const page = await app.firstWindow();
+      await page.getByRole('button', { name: 'Resume session', exact: true }).waitFor();
+      report.usableUIStartupMs = performance.now() - start;
+      await page.getByRole('button', { name: 'Resume session', exact: true }).click();
+      const feedback = [];
+      for (let i = 0; i < session.items.length; i++) {
+        const q = questions.find((q) => q.id === session.items[i].question.id);
+        for (const id of q.correctOptionIds) {
+          const index = q.options.findIndex((o) => o.id === id);
+          const option = page.locator('label.answer-option input').nth(index);
+          if (!(await option.isChecked())) await option.click();
+        }
+        await page.getByRole('button', { name: 'Check answer', exact: true }).waitFor();
+        await page.waitForFunction(() =>
+          [...document.querySelectorAll('button')].some(
+            (b) => b.textContent.trim() === 'Check answer' && !b.disabled,
+          ),
+        );
+        feedback.push(
+          await page.evaluate(
+            () =>
+              new Promise((resolve) => {
+                const start = performance.now();
+                const observer = new MutationObserver(() => {
+                  if (document.querySelector('.answer-explanation')) {
+                    observer.disconnect();
+                    requestAnimationFrame(() => resolve(performance.now() - start));
+                  }
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+                [...document.querySelectorAll('button')]
+                  .find((b) => b.textContent.trim() === 'Check answer')
+                  .click();
+              }),
+          ),
+        );
+        if (i < session.items.length - 1)
+          await page.getByRole('button', { name: 'Next question', exact: true }).click();
+      }
+      report.quizFeedbackP95Ms = p95(feedback);
+      report.quizFeedbackSamples = feedback.length;
+      report.note =
+        'Full renderer using production assets in development Electron with a disposable synthetic profile; no packaged-profile override.';
+    } finally {
+      await app.close();
+    }
+  }
   mkdirSync('test-results', { recursive: true });
   writeFileSync('test-results/benchmark.json', JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
   assert.ok(startup < 5000, 'Store startup budget exceeded');
   assert.ok(report.searchP95Ms < 300, 'Search budget exceeded');
   assert.ok(report.quizSaveP95Ms < 100, 'Quiz budget exceeded');
+  if (process.argv.includes('--ui')) {
+    assert.ok(report.usableUIStartupMs < 5000, 'Usable UI startup budget exceeded');
+    assert.ok(report.quizFeedbackP95Ms < 100, 'Rendered quiz feedback budget exceeded');
+  }
 } finally {
   store?.close();
   rmSync(dir, { recursive: true, force: true });

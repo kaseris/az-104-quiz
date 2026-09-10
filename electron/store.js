@@ -150,7 +150,7 @@ export class StudyStore {
     this.enforceTime();
     const sessions = this.db
       .prepare(
-        `SELECT s.*,count(i.position) AS total,count(i.submitted_at) AS answered,coalesce(sum(i.correct),0) AS correct FROM sessions s JOIN session_items i ON i.session_id=s.id GROUP BY s.id ORDER BY s.started_at DESC`,
+        `SELECT s.*,count(i.position) AS total,count(i.submitted_at) AS answered,coalesce(sum(i.correct),0) AS correct,coalesce(sum(i.prior_exposure=1),0) AS prior_exposure_count FROM sessions s JOIN session_items i ON i.session_id=s.id GROUP BY s.id ORDER BY s.started_at DESC`,
       )
       .all()
       .map((s) => ({
@@ -163,11 +163,7 @@ export class StudyStore {
         total: s.total,
         answered: s.answered,
         correct: s.mode === 'exam' && !s.completed_at ? null : s.correct,
-        priorExposureCount: this.db
-          .prepare(
-            'SELECT count(*) AS n FROM session_items WHERE session_id=? AND prior_exposure=1',
-          )
-          .get(s.id).n,
+        priorExposureCount: s.prior_exposure_count,
         comparisonKey:
           s.mode === 'exam' && s.timing_status !== 'invalid'
             ? json([
@@ -504,48 +500,53 @@ export class StudyStore {
     const row = this.db.prepare('SELECT * FROM sessions WHERE id=?').get(id);
     ensure(row, 'This session could not be found.');
     const hidden = row.mode === 'exam' && !row.completed_at;
-    const items = this.db
+    const storedItems = this.db
       .prepare('SELECT * FROM session_items WHERE session_id=? ORDER BY position')
-      .all(id)
-      .map((item) => {
-        const q = JSON.parse(item.snapshot),
-          { correctOptionIds, explanation, references, source, options, ...rest } = q;
-        if (item.submitted_at && !hidden) {
-          this.db
-            .prepare('INSERT OR IGNORE INTO exposures VALUES (?,?)')
-            .run(mapping(q).familyId, this.now());
-          for (const draft of this.db
-            .prepare(
-              'SELECT session_id,position,snapshot FROM session_items WHERE submitted_at IS NULL',
-            )
-            .all())
-            if (mapping(JSON.parse(draft.snapshot)).familyId === mapping(q).familyId)
-              this.db
-                .prepare(
-                  "UPDATE session_items SET assistance='seen' WHERE session_id=? AND position=? AND assistance!='unknown'",
-                )
-                .run(draft.session_id, draft.position);
-        }
-        return {
-          question: {
-            ...rest,
-            selectionCount: correctOptionIds.length,
-            options: options.map(({ id, text }) => ({ id, text })),
-          },
-          selectedOptionIds: JSON.parse(item.selected),
-          submittedAt: hidden ? null : item.submitted_at,
-          correct: hidden || item.correct === null ? null : !!item.correct,
-          durationMs: item.duration_ms,
-          confidence: item.confidence,
-          revision: item.revision,
-          flagged: !!item.flagged,
-          reason: item.reason,
-          priorExposure: item.prior_exposure === null ? null : !!item.prior_exposure,
-          ...(item.submitted_at && !hidden
-            ? { review: { correctOptionIds, explanation, references, source, options } }
-            : {}),
-        };
-      });
+      .all(id);
+    const revealedFamilies = new Set(
+      hidden
+        ? []
+        : storedItems
+            .filter((item) => item.submitted_at)
+            .map((item) => mapping(JSON.parse(item.snapshot)).familyId),
+    );
+    if (revealedFamilies.size) {
+      const expose = this.db.prepare('INSERT OR IGNORE INTO exposures VALUES (?,?)');
+      for (const family of revealedFamilies) expose.run(family, this.now());
+      const update = this.db.prepare(
+        "UPDATE session_items SET assistance='seen' WHERE session_id=? AND position=? AND assistance!='unknown'",
+      );
+      for (const draft of this.db
+        .prepare(
+          'SELECT session_id,position,snapshot FROM session_items WHERE submitted_at IS NULL',
+        )
+        .all())
+        if (revealedFamilies.has(mapping(JSON.parse(draft.snapshot)).familyId))
+          update.run(draft.session_id, draft.position);
+    }
+    const items = storedItems.map((item) => {
+      const q = JSON.parse(item.snapshot),
+        { correctOptionIds, explanation, references, source, options, ...rest } = q;
+      return {
+        question: {
+          ...rest,
+          selectionCount: correctOptionIds.length,
+          options: options.map(({ id, text }) => ({ id, text })),
+        },
+        selectedOptionIds: JSON.parse(item.selected),
+        submittedAt: hidden ? null : item.submitted_at,
+        correct: hidden || item.correct === null ? null : !!item.correct,
+        durationMs: item.duration_ms,
+        confidence: item.confidence,
+        revision: item.revision,
+        flagged: !!item.flagged,
+        reason: item.reason,
+        priorExposure: item.prior_exposure === null ? null : !!item.prior_exposure,
+        ...(item.submitted_at && !hidden
+          ? { review: { correctOptionIds, explanation, references, source, options } }
+          : {}),
+      };
+    });
     return {
       id: row.id,
       startedAt: row.started_at,
