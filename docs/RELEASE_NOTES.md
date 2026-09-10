@@ -8,7 +8,7 @@ Stage 7 improves text contrast, correctness-indicator accessibility, Windows ins
 
 ## Platform and distribution limitations
 
-- macOS 15 Apple Silicon and Intel: native installation/replacement and credential persistence passed in CI. macOS 26 compatibility is a required candidate-workflow gate; consult its completed evidence.
+- macOS 15 and 26 Apple Silicon and Intel: installation/replacement and credential persistence passed in the release workflow. See the published release and Stage 7 delivery record for measurements, retries and manual-verification limits.
 - Windows x64: experimental Windows 11 target; Windows Server CI smoke testing does not establish Windows 11 desktop compatibility.
 - All installers are unsigned by a distribution identity. macOS applications may have an ad-hoc signature required for local execution; this is not Developer ID signing or notarization. Windows may show an unknown-publisher warning. Do not disable OS security globally.
 - Signing, notarization, consistent unsigned-macOS Keychain behavior, and manual assistive-technology verification remain explicit dependencies. Automatic updates are disabled.

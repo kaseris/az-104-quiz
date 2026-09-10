@@ -1,41 +1,55 @@
 # Stage 7 delivery record
 
-Stage 6 is accepted complete by user decision on September 9, 2026. Unverified lab drafts and deferred evaluation remain documented limitations. Stage 7 functionality is implemented; final release-candidate validation is in progress; this document records evidence without claiming unperformed checks.
+Stage 6 is accepted complete by user decision on September 9, 2026. Stage 7 functionality and automated release validation are implemented. [The unsigned v0.5.0 preview](https://github.com/kaseris/az-104-quiz/releases/tag/v0.5.0) was published on September 10, 2026 after verification of all three installer checksums. Manual verification remains open; acceptance does not verify unreleased lab drafts or deferred evaluations.
 
 ## 7A — Durability and portability
 
-Implemented schema 9 storage for inert imported questions/messages, format-1 JSON export/import, bounded validation and disposable-database constraint checks, additive conflict preview, recovery backups and transactional application, selective personal lab-text removal, reset retaining billing reservations, and local diagnostic preview/save. File selection stays in the trusted process. Unsupported downgrades are rejected before journal initialization. Existing cache and conversation deletion controls remain available.
+Schema 9 and JSON export format 1 preserve immutable study snapshots, generated question provenance, annotations, drafts and lab history. Optional chats import as inert historical messages. Complete bounded validation and disposable-database constraint checks precede additive conflict preview and transactional application. Recovery backups, selective personal lab-text removal, reset retaining spending reservations, and allowlisted diagnostics are implemented. Trusted file dialogs own paths; unsupported database downgrades are rejected before journal initialization.
 
-Data management disables AI/automation and refuses active work. Exports intentionally retain only the `includeGenerated` practice preference; AI model/budget settings remain device-local. Chat transcripts may quote evidence. Attachments are not supported. Generated questions retain their own provenance without restoring queue jobs. Recovery files contain personal content and are not portable credentials.
+Data operations disable AI/automation and refuse active work. Only the includeGenerated practice preference is portable; AI model/budget settings remain device-local. Credentials, provider identifiers, executable jobs, billing, caches and search indexes are excluded. Chats may quote evidence. Attachments are unsupported. Recovery backups contain personal content and require appropriate handling.
 
-## 7B — Packaging
+## 7B — Installable applications
 
-Pinned electron-builder 26.15.3; stable application ID io.github.kaseris.az104studydesk; separate ARM64/x64 macOS DMGs and Windows x64 per-user NSIS installer. App name/profile identity and package version 0.5.0 are retained. Production CSP excludes development connections. Original application icons and bundled license notices are included.
+Pinned electron-builder 26.15.3 packages separate ARM64/x64 DMGs and a Windows x64 per-user NSIS installer. Application ID io.github.kaseris.az104studydesk, application name/profile location and version 0.5.0 are stable. Explicit packaged-file allowlists, production CSP, original icons and dependency/content notices are included. Windows installed-path IPC comparison retains exact-file and main-frame checks.
 
-Signing/notarization are intentionally unmet. Windows 11 remains experimental. Native and macOS 26 compatibility results will be recorded after GitHub Actions execution.
+Signing/notarization remain intentionally unmet. Ad-hoc macOS signatures are verified; they are not Developer ID signatures. Automatic updates remain disabled. Windows 11 is experimental because Windows Server runner validation does not establish a standard-user Windows 11 desktop experience.
 
-## 7C — Verification evidence
+## 7C — Verified results
 
-- Local lint, 146 Node tests and production build passed before packaging verification.
-- Twelve deterministic real Electron workflows passed on macOS 15.7.4 ARM64; optional live Microsoft Learn test skipped.
-- Portability tests cover round trips, secret exclusion, inert chat/citation retention, conflict rejection, rollback, reset accounting, schema-8 migration and byte-preserving unsupported-downgrade refusal.
-- Dependency installation audit: zero reported vulnerabilities.
-- Synthetic 451 MB long-lived profile (10,000 sessions, 100,000 answers, 1,000 conversations/labs, 100 MiB cache) on Apple M4/macOS 15.7.4: store/state startup 349 ms, search p95 36.5 ms, quiz-save p95 0.23 ms. Fixed an FTS snippet regression found by this benchmark. Packaged UI startup remains separately measured.
-- Extended the same synthetic profile into the production-built renderer on September 10. It exposed 556 ms p95 quiz feedback caused by repeated unanswered-history scans and full-state refreshes. Fixed both without changing stored scores or snapshots. `npm run benchmark -- --ui` now passes on Apple M4/macOS 15.7.4: usable UI startup 616 ms, search p95 57 ms, and rendered quiz feedback p95 51 ms over 20 answers. These measurements use development Electron with an isolated fixture profile; installed default-profile startup is separately tested by the release workflow. All 146 Node tests and 12 Electron workflows passed after the fix.
-- New Electron Data management workflow passes export preview/save, confirmed reset, additive import, disabled AI, keyboard operation and 200% zoom.
-- All three native CI jobs passed in [run 34396762348](https://github.com/kaseris/az-104-quiz/actions/runs/34396762348), including real installer/replacement tests, schema-8 migration, saved quiz/annotation/chat/lab/checkpoint data, and OS-encrypted credential persistence. First packaged workflow timings: ARM64 2,356 ms, Intel 1,735 ms, Windows x64 1,125 ms. macOS 26 compatibility remains pending the candidate workflow.
-- Added axe-core WCAG A/AA checks across onboarding, ten main screens, active quizzes and answer explanations. Fixed inherited low-contrast text, focus visibility and correctness-indicator semantics; automated audit passes. Manual assistive-technology checks remain distinct.
-- Fixed Windows installed-path IPC comparison while retaining exact-file/main-frame validation. Fixed an AI-settings loading race and Windows guide line-ending assumptions exposed by native CI.
-- The first unpublished candidate passed all native jobs but failed macOS 26 timing gates. The smoke test incorrectly included credential operations and quiz completion in its startup timer. Corrected the timer to stop when study data and navigation are usable, retaining the five-second threshold; total workflow time is reported separately. The unpublished candidate tag was updated for full revalidation. No published binaries or tags were replaced.
-- The corrected macOS 26 direct-extraction checks still exceeded the startup budget (ARM64 5,818 ms; Intel 5,642 ms). Compatibility verification now installs and replaces the exact native DMG on macOS 26, matching the native installer flow, and records launch/DOM/usable-startup timings separately. Publication remains blocked until the required candidate gates pass.
-- DMG-based macOS 26 Intel installation/replacement passed (1,811/929 ms startup). ARM64 still exceeded the budget at 5,380 ms. Deferred the otherwise unused provider SDK until explicit AI use, preserving synchronous cancellation/reservation boundaries. Also added bounded retries for Windows test-directory cleanup after observing a transient post-test directory lock. Neither change relaxes application assertions or timing budgets.
-- Local ARM64 DMG built; ad-hoc signature verified with codesign. This is not Developer ID signing/notarization.
-- Manual VoiceOver/Narrator, clean Windows 11 desktop testing and live installed AI verification: pending. Native installer/replacement checks run on disposable hosted accounts. These are not established by unit tests.
+The exact release source is commit 530ef778689838a9edeb8f9370eb025ec84e7453. [Main CI 34526924143](https://github.com/kaseris/az-104-quiz/actions/runs/34526924143) passed all three targets; a Windows installer timeout passed on retry, and the independent release job also passed. [Release workflow 34527013975](https://github.com/kaseris/az-104-quiz/actions/runs/34527013975) passed every required job. Each native architecture passed lint, 146 Node tests, 12 deterministic Electron workflows, production build, dependency audit, packaging and installed-app checks. The optional live Microsoft Learn test is excluded from deterministic CI. No paid AI calls run in CI.
+
+The same Mac DMGs were installed on macOS 26 without rebuilding. All five installed targets passed schema-8 migration, quiz completion/restart, saved annotations/conversations/labs/generation checkpoints, profile preservation, and real OS-encrypted credential persistence across replacement.
+
+| Hosted target | First usable startup | After replacement | Secure storage / retained data |
+| --- | ---: | ---: | --- |
+| macOS 15 ARM64 | 1,484 ms | 853 ms | Passed |
+| macOS 15 Intel | 1,530 ms | 1,119 ms | Passed |
+| macOS 26 ARM64 | 3,448 ms | 983 ms | Passed |
+| macOS 26 Intel | 4,423 ms | 1,041 ms | Passed on retry |
+| Windows Server 2025 x64 | 709 ms | 589 ms | Passed |
+
+Cold-launch timings vary on hosted machines. The final Intel macOS 26 candidate initially exceeded the five-second budget at 6,736 ms, then passed at 4,423 ms on a fresh runner using the unchanged installer. This outlier remains part of the evidence; thresholds were not relaxed. Earlier candidates exposed an incorrect whole-workflow startup timer, eager SDK loading and Windows cleanup timing. Startup now measures usable navigation/data separately from credential and quiz work, the AI SDK loads only on explicit use, and temporary-directory cleanup has bounded Windows retries. Only unpublished candidate tags were updated; no published tag or binary was replaced.
+
+### Long-lived profile and accessibility
+
+A synthetic 451 MB database contains 10,000 sessions, 100,000 answers, 1,000 conversations, 1,000 lab attempts and a 100 MiB document cache. Final source measurements on Apple M4/macOS 15.7.4, Node 24.4.1:
+
+| Measurement | Result | Budget |
+| --- | ---: | ---: |
+| Usable renderer startup | 770 ms | 5,000 ms |
+| Search p95 | 40 ms | 300 ms |
+| Visible quiz feedback p95, 20 answers | 47 ms | 100 ms |
+
+Run npm run build followed by npm run benchmark -- --ui to reproduce. This uses development Electron, production renderer assets and a disposable fixture profile; packaged applications receive no profile override. The benchmark found and drove fixes for slow FTS excerpts, repeated unanswered-history scans and unnecessary full-history refreshes. Stored scores and snapshots are unchanged, and a focused navigation check confirms current overview totals after a quiz answer.
+
+Axe-core WCAG A/AA checks passed across onboarding, ten principal screens, active quizzes and answer explanations. Contrast, focus visibility and correctness-indicator semantics were corrected. Electron checks include keyboard operation, reduced-motion settings and 200% zoom. Portability tests cover secret exclusion, inert imports, conflict rejection, rollback, retained billing, migration and byte-preserving unsupported-downgrade refusal. Dependency audits reported zero vulnerabilities. Initial source review and a full staged-content gitleaks scan found zero secrets; live evaluation outputs, profiles and keys are excluded.
 
 ### Remaining verification
 
-Stage 7's automated checks do not complete its entire manual verification checklist. VoiceOver/Narrator reading order, announcements and all-flow keyboard/reduced-motion/minimum-window review still need an interactive reviewer. Installed live AI needs an explicitly initiated local check; CI never supplies a real provider key. Clean Windows 11 standard-user install/uninstall remains pending. The long-lived-profile renderer benchmark runs in development Electron with production assets; its installed-app equivalent remains a separate verification item. These limitations remain open after preview publication.
+Manual VoiceOver/Narrator reading order and announcements, and exhaustive keyboard/reduced-motion/minimum-window review across all flows remain open. Installed live AI needs an explicitly initiated local check. Clean Windows 11 standard-user install/uninstall is pending. The synthetic renderer benchmark is separate from installed-app testing. Signing/notarization and consistent unsigned-macOS Keychain behavior remain unmet distribution dependencies. Stage 7's complete manual checklist is not claimed as finished.
 
-## 7D — Release
+## 7D — Repository and release
 
-Public repository kaseris/az-104-quiz created. MIT original-code license, third-party notices, recovery guide, release limitations and tag-driven draft workflow added. Source pushed to main after a full staged-content gitleaks scan found zero secrets. All live-evaluation JSON outputs, profiles and credentials are excluded. v0.5.0 artifact publication remains pending required checks.
+Public repository [kaseris/az-104-quiz](https://github.com/kaseris/az-104-quiz) uses main and MIT licensing for original code. The older ChatGPT directory was left untouched. Recovery/manual-update instructions, third-party notices, known limitations, tested platforms, and content refresh/retirement guidance are included.
+
+The tag-driven workflow validates main ancestry/version, runs native and compatibility gates, and assembles one draft with three installers, SHA-256 checksums, notices and release notes. Only assembly has contents-write permission. Manual dispatch and release-please are documented alternatives, not enabled workflows. The downloaded installers matched every SHA-256 checksum before the existing draft was published at 20:48 UTC on September 10, 2026. The release retains its prerelease/unsigned-preview label. No binaries were rebuilt for publication. Published tags and assets are immutable; corrections require a new patch version.
