@@ -10,6 +10,8 @@ Review clean install/replacement, credential access, offline behavior, recovery,
 
 Manual dispatch is a possible future candidate-building strategy, but adds coordination of commits, versions and tags. Release-please can later automate version/changelog PRs when release frequency warrants it. Neither is enabled now. Automatic application updates require a separate trusted signing/distribution design.
 
+Validation, native builds, compatibility and draft assembly form one workflow dependency chain. This avoids depending on an event created by `GITHUB_TOKEN` to trigger a second workflow. Review GitHub's [workflow-trigger behavior](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow) and [explicit runner labels and hardware](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) when changing the strategy. Windows hosted runners are administrative accounts with UAC disabled, so they cannot establish the standard-user Windows 11 installation experience. Credential checks follow Electron's [platform-specific safeStorage behavior](https://www.electronjs.org/docs/latest/api/safe-storage); unsigned macOS credential continuity remains a limitation even when CI passes.
+
 ## Content maintenance
 
 Keep the versioned exam blueprint and skill mappings explicit. Review Microsoft objectives, record coverage differences, and migrate mappings deliberately. Increment question versions when meaning or answers change. Retire disputed or obsolete versions from future selection without rewriting stored session snapshots, answers or grades. Keep source notices, reviewed dates and audit records current. Unverified lab drafts remain excluded from the released catalog.

@@ -25,8 +25,14 @@ Signing/notarization are intentionally unmet. Windows 11 remains experimental. N
 - All three native CI jobs passed in [run 34396762348](https://github.com/kaseris/az-104-quiz/actions/runs/34396762348), including real installer/replacement tests, schema-8 migration, saved quiz/annotation/chat/lab/checkpoint data, and OS-encrypted credential persistence. First packaged workflow timings: ARM64 2,356 ms, Intel 1,735 ms, Windows x64 1,125 ms. macOS 26 compatibility remains pending the candidate workflow.
 - Added axe-core WCAG A/AA checks across onboarding, ten main screens, active quizzes and answer explanations. Fixed inherited low-contrast text, focus visibility and correctness-indicator semantics; automated audit passes. Manual assistive-technology checks remain distinct.
 - Fixed Windows installed-path IPC comparison while retaining exact-file/main-frame validation. Fixed an AI-settings loading race and Windows guide line-ending assumptions exposed by native CI.
+- The first unpublished candidate passed all native jobs but failed macOS 26 timing gates. The smoke test incorrectly included credential operations and quiz completion in its startup timer. Corrected the timer to stop when study data and navigation are usable, retaining the five-second threshold; total workflow time is reported separately. The unpublished candidate tag was updated for full revalidation. No published binaries or tags were replaced.
+- The corrected macOS 26 direct-extraction checks still exceeded the startup budget (ARM64 5,818 ms; Intel 5,642 ms). Compatibility verification now installs and replaces the exact native DMG on macOS 26, matching the native installer flow, and records launch/DOM/usable-startup timings separately. Publication remains blocked until the required candidate gates pass.
 - Local ARM64 DMG built; ad-hoc signature verified with codesign. This is not Developer ID signing/notarization.
 - Manual VoiceOver/Narrator, clean Windows 11 desktop testing and live installed AI verification: pending. Native installer/replacement checks run on disposable hosted accounts. These are not established by unit tests.
+
+### Remaining verification
+
+Stage 7's automated checks do not complete its entire manual verification checklist. VoiceOver/Narrator reading order, announcements and all-flow keyboard/reduced-motion/minimum-window review still need an interactive reviewer. Installed live AI needs an explicitly initiated local check; CI never supplies a real provider key. Clean Windows 11 standard-user install/uninstall remains pending. The synthetic benchmark measures storage/state, search and quiz persistence; it does not establish full rendered UI startup or end-to-end feedback latency on the same long-lived profile. These limitations remain open after preview publication.
 
 ## 7D — Release
 

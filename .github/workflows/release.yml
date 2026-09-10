@@ -58,16 +58,12 @@ jobs:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       - name: Verify installation, replacement and packaged application
         run: npm run test:packaged
-      - name: Preserve macOS application for compatibility tests
-        if: runner.os == 'macOS'
-        run: ditto -c -k --sequesterRsrc --keepParent "release/${{ matrix.folder }}/AZ-104 Study Desk.app" "release/compatibility-${{ matrix.arch }}.zip"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: candidate-${{ matrix.platform }}-${{ matrix.arch }}
           path: |
             release/*.dmg
             release/*.exe
-            release/compatibility-*.zip
             test-results/packaged-*.json
           if-no-files-found: error
           retention-days: 14
@@ -94,9 +90,12 @@ jobs:
         with:
           name: candidate-mac-${{ matrix.arch }}
           path: candidate
-      - run: ditto -x -k "candidate/release/compatibility-${{ matrix.arch }}.zip" release
+      - name: Use the exact native installer on macOS 26
+        run: |
+          mkdir -p release
+          cp candidate/release/*.dmg release/
       - run: mkdir -p test-results
-      - run: npm run test:packaged -- "release/AZ-104 Study Desk.app/Contents/MacOS/AZ-104 Study Desk"
+      - run: npm run test:packaged
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: compatibility-${{ matrix.arch }}

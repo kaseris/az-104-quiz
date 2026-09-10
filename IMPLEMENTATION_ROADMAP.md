@@ -42,8 +42,8 @@ Model names, capabilities, API details, pricing, Azure behavior, and the exam ou
 | 3     | Searchable documentation reader, highlights, bookmarks, and `@` references             | Stage 1 storage; stage 2 objective mapping             | No                              | **Complete — 3A–3D**                                             |
 | 4     | Documentation-grounded OpenAI tutor                                                    | Stage 3 reader/retrieval; stage 2 learning evidence    | Yes for chat                    | Complete for now; evaluation deferred                            |
 | 5     | Durable background generation of personalized questions                                | Stages 2–4                                             | Yes for generation              | Complete — 5A–5E                                                 |
-| 6     | Curated Azure exercises with optional AI assistance                                    | Stages 2–3 for core labs; stages 4–5 for AI adaptation | No for curated labs; yes for AI | In progress — 6D.2 complete; 6A.3 verification/expansion pending |
-| 7     | Installable macOS release, reliable upgrades, data portability, and release validation | Stages 2–6 integrated                                  | Optional; both modes tested     | Planned                                                          |
+| 6     | Curated Azure exercises with optional AI assistance                                    | Stages 2–3 for core labs; stages 4–5 for AI adaptation | No for curated labs; yes for AI | Accepted complete by user; draft verification remains deferred |
+| 7     | Installable macOS/experimental Windows release, reliable upgrades and data portability | Stages 2–6 integrated                                  | Optional; see verification record | Implemented; final release verification in progress              |
 
 Storage, accessibility, content quality, and security work happens within each stage. Stage 7 verifies the integrated product; it is not the first point at which these concerns are addressed.
 
@@ -476,7 +476,7 @@ The integrated application can be installed and upgraded on macOS, preserves its
 
 ### Out of scope for the initial release
 
-Windows/Linux release commitments, multi-device synchronization, accounts/shared classrooms, automatic cloud provisioning, and a hosted service. These can be planned after the macOS release is usable and reviewed.
+Linux release commitments, multi-device synchronization, accounts/shared classrooms, automatic cloud provisioning, and a hosted service. Windows x64 packaging is now an authorized Stage 7 expansion with experimental Windows 11 status; see the current decision in section 12.
 
 ## 10. Cross-stage contracts
 

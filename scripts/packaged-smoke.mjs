@@ -85,14 +85,16 @@ try {
   for (let pass = 0; pass < 2; pass++) {
     const start = performance.now();
     app = await electron.launch({ executablePath, env, cwd: dirname(executablePath) });
+    const launchMs = Math.round(performance.now() - start);
     const page = await app.firstWindow();
     await page.waitForLoadState('domcontentloaded');
+    const domMs = Math.round(performance.now() - start);
     const state = await page.evaluate(() => window.study.getState());
     if (!state.onboarded)
       await page.getByRole('button', { name: 'Continue without AI' }).waitFor();
     else await page.getByRole('button', { name: 'Settings & sources', exact: true }).waitFor();
     const startupMs = Math.round(performance.now() - start);
-    console.log(JSON.stringify({ pass, startupMs }));
+    console.log(JSON.stringify({ pass, launchMs, domMs, startupMs }));
     assert.ok(startupMs < 5000, `Usable startup exceeded 5 seconds: ${startupMs}`);
     const runtime = await app.evaluate(({ app, safeStorage }) => ({
       packaged: app.isPackaged,
@@ -196,6 +198,8 @@ try {
     report.checks.push({
       pass,
       startupMs,
+      launchMs,
+      domMs,
       workflowMs: Math.round(performance.now() - start),
       secureStorage: runtime.safe,
       profilePreserved: true,
