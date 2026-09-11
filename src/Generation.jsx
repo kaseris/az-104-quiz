@@ -1,3 +1,4 @@
+import Select from './Select.jsx';
 import { useCallback, useEffect, useState } from 'react';
 import { LoaderCircle, Sparkles } from 'lucide-react';
 const api = window.study;
@@ -22,11 +23,11 @@ export function GenerateLink({ sessionId, objectiveId }) {
           </p>
           <label>
             Candidates{' '}
-            <select value={count} onChange={(e) => setCount(Number(e.target.value))}>
+            <Select value={count} onChange={(e) => setCount(Number(e.target.value))}>
               {[1, 2, 3, 4, 5].map((n) => (
                 <option key={n}>{n}</option>
               ))}
-            </select>
+            </Select>
           </label>
           <button
             className="primary"

@@ -90,8 +90,7 @@ try {
     await page.waitForLoadState('domcontentloaded');
     const domMs = Math.round(performance.now() - start);
     const state = await page.evaluate(() => window.study.getState());
-    if (!state.onboarded)
-      await page.getByRole('button', { name: 'Continue without AI' }).waitFor();
+    if (!state.onboarded) await page.getByRole('button', { name: 'Continue without AI' }).waitFor();
     else await page.getByRole('button', { name: 'Settings & sources', exact: true }).waitFor();
     const startupMs = Math.round(performance.now() - start);
     console.log(JSON.stringify({ pass, launchMs, domMs, startupMs }));
@@ -179,7 +178,7 @@ try {
         5,
       );
     }
-    assert.equal(persisted.diagnostics.appVersion, '0.5.0');
+    assert.equal(persisted.diagnostics.appVersion, '0.6.0');
     const isolation = await page.evaluate(() => ({
       node: typeof window.require,
       csp: document.querySelector('meta[http-equiv="Content-Security-Policy"]').content,

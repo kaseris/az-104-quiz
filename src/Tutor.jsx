@@ -1,3 +1,4 @@
+import Select from './Select.jsx';
 import { useState, useEffect, useCallback, useRef } from 'react';
 const api = window.study;
 const money = (n) => (typeof n === 'number' ? `$${n.toFixed(4)}` : 'Unknown');
@@ -91,15 +92,15 @@ export function ProviderSettings({ openTutor, parentBusy = false }) {
       <div className="tutor-settings-grid">
         <label>
           Tutoring model
-          <select value={model} onChange={(e) => setModel(e.target.value)} disabled={locked}>
+          <Select value={model} onChange={(e) => setModel(e.target.value)} disabled={locked}>
             {(data?.models || [{ id: 'gpt-5.6-terra' }]).map((m) => (
               <option key={m.id}>{m.id}</option>
             ))}
-          </select>
+          </Select>
         </label>
         <label>
           Generation model
-          <select
+          <Select
             value={generationModel}
             onChange={(e) => setGenerationModel(e.target.value)}
             disabled={locked}
@@ -107,11 +108,11 @@ export function ProviderSettings({ openTutor, parentBusy = false }) {
             {(data?.models || []).map((m) => (
               <option key={m.id}>{m.id}</option>
             ))}
-          </select>
+          </Select>
         </label>
         <label>
           Independent review model
-          <select
+          <Select
             value={reviewModel}
             onChange={(e) => setReviewModel(e.target.value)}
             disabled={locked}
@@ -119,7 +120,7 @@ export function ProviderSettings({ openTutor, parentBusy = false }) {
             {(data?.models || []).map((m) => (
               <option key={m.id}>{m.id}</option>
             ))}
-          </select>
+          </Select>
         </label>
         <label>
           Daily app limit (USD)
@@ -362,7 +363,7 @@ export default function Tutor({ initial = {} }) {
       {!!list.length && (
         <label>
           Conversation
-          <select
+          <Select
             value={c?.id || ''}
             disabled={busy}
             onChange={(e) => run(() => select(e.target.value))}
@@ -372,7 +373,7 @@ export default function Tutor({ initial = {} }) {
                 {x.title}
               </option>
             ))}
-          </select>
+          </Select>
         </label>
       )}
       {!c && (
@@ -502,7 +503,7 @@ export default function Tutor({ initial = {} }) {
             )}
             <label>
               Response style
-              <select
+              <Select
                 disabled={busy || !!active}
                 value={c.mode}
                 onChange={(e) =>
@@ -515,7 +516,7 @@ export default function Tutor({ initial = {} }) {
               >
                 <option value="explain">Explanation</option>
                 <option value="hint">Conceptual hint</option>
-              </select>
+              </Select>
             </label>
             <label>
               Your question

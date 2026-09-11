@@ -3,6 +3,7 @@ export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: false,
   workers: 1,
+  projects: [{ name: 'light' }, { name: 'dark', testIgnore: '**/appearance.spec.js' }],
   timeout: 120000,
   expect: { timeout: 10000 },
   reporter: 'list',

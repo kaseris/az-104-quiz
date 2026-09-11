@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -17,6 +18,10 @@ test('offline labs: preflight, saved help, recoverable save error, pause and res
     delete env.AZ104_DEV_SERVER;
     app = await electron.launch({ args: [root], env });
     page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.context().setOffline(true);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     page.on('pageerror', (e) => errors.push(e.message));
@@ -29,7 +34,7 @@ test('offline labs: preflight, saved help, recoverable save error, pause and res
   try {
     await launch();
     await page.setViewportSize({ width: 900, height: 760 });
-    await page.screenshot({ path: info.outputPath('library.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('library.png'), fullPage: true });
     await page.getByLabel('Domain', { exact: true }).selectOption('storage');
     await expect(page.getByText('No exercises match. Try another domain or search.')).toBeVisible();
     await page.getByLabel('Domain', { exact: true }).selectOption('all');
@@ -110,7 +115,7 @@ test('offline labs: preflight, saved help, recoverable save error, pause and res
     await page.getByRole('button', { name: 'Reveal full walkthrough', exact: true }).click();
     await expect(page.getByLabel('Current walkthrough step')).toContainText('az login');
     await page.setViewportSize({ width: 900, height: 760 });
-    await page.screenshot({ path: info.outputPath('labs.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('labs.png'), fullPage: true });
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);
@@ -147,6 +152,10 @@ test('lab evidence autosaves, completes separately from cleanup, and keeps repea
     delete env.AZ104_DEV_SERVER;
     app = await electron.launch({ args: [root], env });
     page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.context().setOffline(true);
     page.on('pageerror', (e) => errors.push(e.message));
     await page.getByRole('button', { name: 'Hands-on labs', exact: true }).click();
@@ -259,7 +268,7 @@ test('lab evidence autosaves, completes separately from cleanup, and keeps repea
     expect(await page.evaluate((id) => window.study.labs.read({ id }), firstId)).toEqual(clean);
     await page.setViewportSize({ width: 900, height: 760 });
     await evidence().scrollIntoViewIfNeeded();
-    await page.screenshot({ path: info.outputPath('evidence.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('evidence.png'), fullPage: true });
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);
@@ -295,6 +304,10 @@ test('6C local recommendations, reflection recovery and filtered history survive
     delete env.AZ104_DEV_SERVER;
     app = await electron.launch({ args: [root], env });
     page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.context().setOffline(true);
     page.on('pageerror', (e) => errors.push(e.message));
     await page.getByRole('button', { name: 'Hands-on labs', exact: true }).click();
@@ -342,14 +355,14 @@ test('6C local recommendations, reflection recovery and filtered history survive
     const id = state.attempts[0].id;
     await page.setViewportSize({ width: 900, height: 760 });
     await page.getByLabel('Your reflection', { exact: true }).scrollIntoViewIfNeeded();
-    await page.screenshot({ path: info.outputPath('reflection.png') });
+    await screenshot(page, { path: info.outputPath('reflection.png') });
     await page.getByRole('button', { name: '← Lab library', exact: true }).click();
     await page.getByLabel('History method').selectOption('cli');
     await expect(page.getByText('No saved attempts match these filters.')).toBeVisible();
     await page.getByLabel('History method').selectOption('portal');
     await page.getByLabel('History status').selectOption('cleanup_pending');
     await expect(page.getByText('Reflection: Can explain it', { exact: false })).toBeVisible();
-    await page.screenshot({ path: info.outputPath('history.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('history.png'), fullPage: true });
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);
@@ -395,6 +408,10 @@ test('6D.1 lab tutoring previews opt-in redacted evidence offline without activa
     delete env.AZ104_DEV_SERVER;
     app = await electron.launch({ args: [root], env });
     const page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.context().setOffline(true);
     page.on('pageerror', (e) => errors.push(e.message));
     await page.getByRole('button', { name: 'Hands-on labs', exact: true }).click();
@@ -451,7 +468,7 @@ test('6D.1 lab tutoring previews opt-in redacted evidence offline without activa
     expect(saved.tutorRequests).toBe(0);
     await page.setViewportSize({ width: 900, height: 760 });
     await page.getByRole('region', { name: 'Lab context sharing' }).scrollIntoViewIfNeeded();
-    await page.screenshot({ path: info.outputPath('lab-tutor.png') });
+    await screenshot(page, { path: info.outputPath('lab-tutor.png') });
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);

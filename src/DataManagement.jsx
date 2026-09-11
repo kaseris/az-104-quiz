@@ -1,3 +1,4 @@
+import Select from './Select.jsx';
 import { useState } from 'react';
 const api = window.study;
 export default function DataManagement() {
@@ -193,7 +194,7 @@ export default function DataManagement() {
             {erase === 'labEvidence' ? (
               <>
                 <label htmlFor="erase-attempt">Lab attempt</label>
-                <select
+                <Select
                   id="erase-attempt"
                   value={attempt}
                   onChange={(e) => setAttempt(e.target.value)}
@@ -204,7 +205,7 @@ export default function DataManagement() {
                       {a.title} · {a.startedAt}
                     </option>
                   ))}
-                </select>
+                </Select>
                 <p>
                   Removes personal notes, output, reflection and cleanup notes. Keeps the attempt,
                   checklist, completion and cleanup status. Copies sent in chats must be deleted

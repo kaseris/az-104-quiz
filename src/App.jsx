@@ -1,4 +1,6 @@
+import Select from './Select.jsx';
 import DataManagement from './DataManagement.jsx';
+import ActionButton from './ActionButton.jsx';
 import Labs from './Labs.jsx';
 import Generation, { GenerateLink, GeneratedProvenance } from './Generation.jsx';
 import Tutor, { ProviderSettings, TutorLink } from './Tutor.jsx';
@@ -60,7 +62,7 @@ const api = window.study;
 function Mark({ small = false }) {
   return (
     <span className={`brand-mark ${small ? 'small' : ''}`} aria-hidden="true">
-      <Layers size={small ? 19 : 25} strokeWidth={1.7} />
+      <Layers size={small ? 19 : 25} strokeWidth={2} />
     </span>
   );
 }
@@ -433,6 +435,10 @@ export default function App() {
           )}
           {screen === 'settings' && (
             <Settings
+              setAppearance={async (mode) => {
+                const appearance = await api.setAppearance({ mode });
+                setState((current) => ({ ...current, appearance }));
+              }}
               openTutor={() => navigate('tutor')}
               state={state}
               busy={busy}
@@ -607,7 +613,7 @@ function Overview({ state, busy, navigate, resume }) {
           STARTER EDITION
         </Badge>
       </div>
-      <section className="practice-hero">
+      <section className="practice-hero study-surface">
         <div className="hero-copy">
           <span className="eyebrow">
             {active ? 'PICK UP WHERE YOU LEFT OFF' : 'TODAY IS A GOOD DAY TO PRACTICE'}
@@ -618,14 +624,14 @@ function Overview({ state, busy, navigate, resume }) {
               ? `${active.answered} of ${active.total} answers saved. Continue at your own pace.`
               : 'A short quiz. A clearer understanding. Practice across the five Azure administrator domains.'}
           </p>
-          <button
+          <ActionButton
             className="primary"
             disabled={busy}
             onClick={() => (active ? resume(active.id) : navigate('practice'))}
           >
             {active ? 'Resume session' : 'Set up a practice quiz'}
             <ArrowRight size={17} />
-          </button>
+          </ActionButton>
           <div className="hero-meta">
             <Clock3 size={14} />
             Untimed study<span>·</span>
@@ -648,7 +654,7 @@ function Overview({ state, busy, navigate, resume }) {
           <span className="art-coordinate">AZ / 104</span>
         </div>
       </section>
-      <div className="stats-grid">
+      <div className="stats-grid study-surface">
         <Stat
           label="QUESTIONS ANSWERED"
           value={answered}
@@ -673,7 +679,7 @@ function Overview({ state, busy, navigate, resume }) {
         />
       </div>
       <div className="overview-columns">
-        <section className="panel domain-panel">
+        <section className="panel domain-panel study-surface">
           <div className="section-heading">
             <div>
               <span className="eyebrow">THE EXAM LANDSCAPE</span>
@@ -686,7 +692,7 @@ function Overview({ state, busy, navigate, resume }) {
             {state.totalQuestions} reviewed questions · Skill coverage is shown in Learning progress
           </div>
         </section>
-        <section className="panel recent-panel">
+        <section className="panel recent-panel study-surface">
           <div className="section-heading">
             <div>
               <span className="eyebrow">YOUR TRACK RECORD</span>
@@ -743,7 +749,7 @@ function Stat({ label, value, detail, icon: Icon }) {
         <strong>{value}</strong>
         <small>{detail}</small>
       </div>
-      <Icon size={20} strokeWidth={1.6} />
+      <Icon size={20} strokeWidth={2} />
     </section>
   );
 }
@@ -754,8 +760,8 @@ function DomainRows({ state }) {
         const Icon = icons[d.icon];
         return (
           <div className="domain-row" key={d.id}>
-            <span className="domain-icon" style={{ color: d.color }}>
-              <Icon size={20} strokeWidth={1.6} />
+            <span className="domain-icon">
+              <Icon size={20} strokeWidth={2} />
             </span>
             <span className="domain-info">
               <strong>{d.title}</strong>
@@ -785,7 +791,7 @@ function Practice({ state, busy, start, resume }) {
         </div>
       </div>
       {state.activeId ? (
-        <section className="panel resume-panel">
+        <section className="panel resume-panel study-surface">
           <Clock3 size={28} />
           <div>
             <h2>You have a session in progress.</h2>
@@ -793,15 +799,15 @@ function Practice({ state, busy, start, resume }) {
               Your questions and answers are saved. Finish this session before starting another.
             </p>
           </div>
-          <button className="primary" disabled={busy} onClick={() => resume(state.activeId)}>
+          <ActionButton className="primary" disabled={busy} onClick={() => resume(state.activeId)}>
             Resume session
             <ArrowRight size={17} />
-          </button>
+          </ActionButton>
         </section>
       ) : (
         <div className="setup-grid">
           <form
-            className="panel quiz-setup"
+            className="panel quiz-setup study-surface"
             onSubmit={(e) => {
               e.preventDefault();
               start({ count: domain === 'all' ? count : 4, domainId: domain });
@@ -837,7 +843,7 @@ function Practice({ state, busy, start, resume }) {
                       checked={domain === d.id}
                       onChange={() => setDomain(d.id)}
                     />
-                    <Icon size={20} style={{ color: d.color }} />
+                    <Icon size={20} />
                     <span>
                       <strong>{d.title}</strong>
                       <small>{d.description}</small>
@@ -872,10 +878,10 @@ function Practice({ state, busy, start, resume }) {
                 </p>
               )}
             </fieldset>
-            <button type="submit" className="primary wide" disabled={busy}>
+            <ActionButton type="submit" className="primary wide" disabled={busy}>
               {busy ? <LoaderCircle className="spin" size={18} /> : <ArrowRight size={18} />}Start{' '}
               {actual}-question quiz
-            </button>
+            </ActionButton>
           </form>
           <aside className="session-guide">
             <Badge muted>STUDY MODE</Badge>
@@ -928,8 +934,24 @@ function Quiz({ session, state, busy, update, run, navigate }) {
       initialDuration.current + Math.max(0, Math.round(performance.now() - started.current)),
     );
   const heading = useRef(null);
+  const feedbackHeading = useRef(null);
+  const actionBar = useRef(null);
+  const quizPage = useRef(null);
   useEffect(() => {
-    heading.current?.focus();
+    const target = item.submittedAt ? feedbackHeading.current : heading.current;
+    target?.focus({ preventScroll: true });
+    target?.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }, [item.submittedAt]);
+  useEffect(() => {
+    const bar = actionBar.current;
+    const page = quizPage.current;
+    const measure = () => {
+      page.style.setProperty('--quiz-action-clearance', `${bar.offsetHeight + 32}px`);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(bar);
+    return () => observer.disconnect();
   }, []);
   const payload = (selected = item.selectedOptionIds) => ({
     sessionId: session.id,
@@ -950,7 +972,7 @@ function Quiz({ session, state, busy, update, run, navigate }) {
   };
   const correctIds = item.review?.correctOptionIds ?? [];
   return (
-    <div className="page-enter quiz-page">
+    <div className="quiz-page" ref={quizPage}>
       <p className="small-muted">{item.reason}</p>
       <ReportQuestion question={q} run={run} />
       <TutorLink
@@ -971,7 +993,9 @@ function Quiz({ session, state, busy, update, run, navigate }) {
           Save & leave
         </button>
         <span className="saved-label" role="status">
-          <CheckCircle2 size={14} />
+          <span className="saved-status-icon" aria-hidden="true">
+            {busy ? <LoaderCircle className="spin" size={14} /> : <CheckCircle2 size={14} />}
+          </span>
           {busy ? 'Saving…' : 'Saved on this device'}
         </span>
       </div>
@@ -989,7 +1013,7 @@ function Quiz({ session, state, busy, update, run, navigate }) {
         aria-label="Questions answered"
       />
       <div className="question-layout">
-        <section className="panel question-panel">
+        <section className="panel question-panel study-surface">
           <div className="question-meta">
             <Badge muted>{domainName(state, q.domainId)}</Badge>
             <span>
@@ -1046,8 +1070,8 @@ function Quiz({ session, state, busy, update, run, navigate }) {
               );
             })}
           </fieldset>
-          {item.review && <AnswerExplanation item={item} run={run} />}
-          <div className="question-actions">
+          {item.review && <AnswerExplanation item={item} run={run} headingRef={feedbackHeading} />}
+          <div className="question-actions" ref={actionBar}>
             <span>
               {item.submittedAt
                 ? 'Answer saved. Take a moment to review.'
@@ -1056,14 +1080,15 @@ function Quiz({ session, state, busy, update, run, navigate }) {
                   : 'Choose an answer to continue.'}
             </span>
             {item.submittedAt ? (
-              <button
+              <ActionButton
                 className="primary"
+                static={session.cursor !== session.items.length - 1}
                 disabled={busy}
                 onClick={() => update('advance', { sessionId: session.id, questionId: q.id })}
               >
                 {session.cursor === session.items.length - 1 ? 'Finish & review' : 'Next question'}
                 <ArrowRight size={17} />
-              </button>
+              </ActionButton>
             ) : (
               <button
                 className="primary"
@@ -1123,14 +1148,14 @@ function Quiz({ session, state, busy, update, run, navigate }) {
     </div>
   );
 }
-function AnswerExplanation({ item, run }) {
+function AnswerExplanation({ item, run, headingRef }) {
   const r = item.review;
   return (
     <section
       className={`answer-explanation ${item.correct ? 'right' : 'wrong'}`}
       aria-label="Answer explanation"
     >
-      <h2>
+      <h2 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>
         {item.correct ? <CheckCircle2 size={21} /> : <CircleHelp size={21} />}
         {item.correct ? 'That’s right.' : 'A useful one to revisit.'}
       </h2>
@@ -1190,7 +1215,7 @@ function Review({ session, state, run, navigate }) {
         <ArrowLeft size={16} />
         Session history
       </button>
-      <section className="review-banner">
+      <section className="review-banner study-surface">
         <div>
           <Badge>SESSION COMPLETE</Badge>
           <h1>Another step forward.</h1>
@@ -1198,10 +1223,10 @@ function Review({ session, state, run, navigate }) {
             {domainName(state, session.domainId)} · {session.items.length} questions ·{' '}
             {date(session.completedAt)}
           </p>
-          <button className="primary" onClick={() => navigate('practice')}>
+          <ActionButton className="primary" onClick={() => navigate('practice')}>
             Practice again
             <RotateCcw size={16} />
-          </button>
+          </ActionButton>
           <GenerateLink sessionId={session.id} />
         </div>
         <div className="score-block">
@@ -1259,14 +1284,14 @@ function Review({ session, state, run, navigate }) {
         </div>
       </div>
       {!visible.length && (
-        <div className="panel success-empty">
+        <div className="panel success-empty study-surface">
           <CheckCircle2 size={27} />
           <h3>No missed questions in this session.</h3>
           <p>Keep exploring different topics to deepen your understanding.</p>
         </div>
       )}
       {visible.map((item) => (
-        <details className="panel review-item" key={item.question.id}>
+        <details className="panel review-item study-surface" key={item.question.id}>
           <summary>
             <span className={`review-status ${item.correct ? 'right' : 'wrong'}`}>
               {item.correct ? <Check size={18} /> : <X size={18} />}
@@ -1312,7 +1337,7 @@ function SessionHistory({ state, busy, open, navigate }) {
   const [modeFilter, setModeFilter] = useState('all');
   const shown = state.sessions.filter((s) => modeFilter === 'all' || s.mode === modeFilter);
   return (
-    <div className="page-enter">
+    <div className="page-enter history-page">
       <div className="page-heading">
         <div>
           <div className="eyebrow">EVERY SESSION COUNTS</div>
@@ -1326,12 +1351,12 @@ function SessionHistory({ state, busy, open, navigate }) {
       </div>
       <label className="confidence">
         Session mode
-        <select value={modeFilter} onChange={(e) => setModeFilter(e.target.value)}>
+        <Select value={modeFilter} onChange={(e) => setModeFilter(e.target.value)}>
           <option value="all">All modes</option>
           <option value="study">Study</option>
           <option value="adaptive">Adaptive</option>
           <option value="exam">Exam-style</option>
-        </select>
+        </Select>
       </label>
       <p>
         Adaptive accuracy reflects personalized selection. Exam comparisons use matching blueprint,
@@ -1404,7 +1429,48 @@ function SessionHistory({ state, busy, open, navigate }) {
     </div>
   );
 }
-function Settings({ state, busy, run, save, remove, openTutor }) {
+function AppearanceControl({ mode, save }) {
+  const [pending, setPending] = useState(false);
+  const [failedMode, setFailedMode] = useState(null);
+  const change = async (nextMode) => {
+    setPending(true);
+    setFailedMode(null);
+    try {
+      await save(nextMode);
+    } catch {
+      setFailedMode(nextMode);
+    } finally {
+      setPending(false);
+    }
+  };
+  return (
+    <section className="panel settings-panel appearance-panel">
+      <h2>Appearance</h2>
+      <p>Choose a light or dark workspace, or follow your system setting.</p>
+      <label htmlFor="appearance">Color theme</label>
+      <Select
+        id="appearance"
+        value={mode || 'system'}
+        disabled={pending}
+        onChange={(event) => change(event.target.value)}
+      >
+        <option value="system">System</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </Select>
+      <span role="status">{pending ? 'Saving appearance…' : ''}</span>
+      {failedMode && (
+        <div className="error-notice" role="alert">
+          <span>Appearance could not be saved. Your previous setting is still active.</span>
+          <button className="secondary" onClick={() => change(failedMode)}>
+            Try again
+          </button>
+        </div>
+      )}
+    </section>
+  );
+}
+function Settings({ state, busy, run, save, remove, openTutor, setAppearance }) {
   const [key, setKey] = useState('');
   const [sessionConsent, setSessionConsent] = useState(false);
   const c = state.credentials;
@@ -1417,6 +1483,7 @@ function Settings({ state, busy, run, save, remove, openTutor }) {
           <p>Your connection, your content, and what comes next.</p>
         </div>
       </div>
+      <AppearanceControl mode={state.appearance} save={setAppearance} />
       <section className="panel settings-panel">
         <div className="section-heading">
           <div className="icon-title">

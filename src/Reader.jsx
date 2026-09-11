@@ -1,3 +1,4 @@
+import Select from './Select.jsx';
 import { createPortal } from 'react-dom';
 import { TutorLink } from './Tutor.jsx';
 import { createElement, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -64,6 +65,11 @@ function Nodes({ nodes, openLink }) {
         </div>
       );
     const props = { key: index };
+    if (node.tag === 'pre') {
+      props.tabIndex = 0;
+      props.role = 'region';
+      props['aria-label'] = 'Scrollable code block';
+    }
     if (node.colspan) props.colSpan = node.colspan;
     if (node.rowspan) props.rowSpan = node.rowspan;
     if (node.start) props.start = node.start;
@@ -158,7 +164,6 @@ function DraftEditor({ draft, refresh, run, data }) {
           value={body}
           maxLength={20000}
           aria-controls={picking ? 'reference-picker' : undefined}
-          aria-expanded={picking}
           onChange={(e) => {
             const value = e.target.value;
             setBody(value);
@@ -189,6 +194,8 @@ function DraftEditor({ draft, refresh, run, data }) {
         <span role="status">{status}</span>
         {status.startsWith('Save failed') && <button onClick={() => save({})}>Retry save</button>}
         <button
+          aria-expanded={picking}
+          aria-controls={picking ? 'reference-picker' : undefined}
           onClick={() => {
             setPicking(!picking);
             setQuery('');
@@ -720,7 +727,7 @@ export default function Reader({ initial = {} }) {
         </button>
         <label>
           Domain
-          <select
+          <Select
             value={domainId}
             onChange={(e) => {
               setDomain(e.target.value);
@@ -739,11 +746,11 @@ export default function Reader({ initial = {} }) {
                 </option>
               )),
             ]}
-          </select>
+          </Select>
         </label>
         <label>
           Objective
-          <select
+          <Select
             value={objectiveId}
             onChange={(e) => {
               setObjective(e.target.value);
@@ -759,11 +766,11 @@ export default function Reader({ initial = {} }) {
                   {o.title}
                 </option>
               ))}
-          </select>
+          </Select>
         </label>
         <label>
           Skill
-          <select
+          <Select
             value={skillId}
             onChange={(e) => {
               setSkill(e.target.value);
@@ -782,7 +789,7 @@ export default function Reader({ initial = {} }) {
                   {s.title}
                 </option>
               ))}
-          </select>
+          </Select>
         </label>
       </form>
       {results && (
@@ -1095,13 +1102,13 @@ export default function Reader({ initial = {} }) {
             {data.drafts.length > 0 && (
               <label>
                 Saved question
-                <select value={draft?.id || ''} onChange={(e) => setActiveDraft(e.target.value)}>
+                <Select value={draft?.id || ''} onChange={(e) => setActiveDraft(e.target.value)}>
                   {data.drafts.map((d) => (
                     <option value={d.id} key={d.id}>
                       {d.title || 'Untitled question'}
                     </option>
                   ))}
-                </select>
+                </Select>
               </label>
             )}
           </section>

@@ -1,7 +1,18 @@
 import { trustedRendererURL } from './trusted-url.js';
 import { registerDataManagement } from './data-management.js';
 import { LabStore } from './labs.js';
-import { app, BrowserWindow, ipcMain, shell, safeStorage, session, dialog, Menu } from 'electron';
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  shell,
+  safeStorage,
+  session,
+  dialog,
+  Menu,
+  nativeTheme,
+} from 'electron';
+import { readAppearance, saveAppearance } from './appearance.js';
 import { mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -36,6 +47,15 @@ let provider;
 let tutor;
 let generation;
 let window;
+let appearanceReady = false;
+let windowReady = false;
+const resolvedAppearance = () => ({
+  mode: readAppearance(store),
+  dark: nativeTheme.shouldUseDarkColors,
+});
+const showReadyWindow = () => {
+  if (appearanceReady && windowReady) window?.show();
+};
 const diagnosticErrors = [];
 
 function register(channel, operation) {
@@ -72,16 +92,19 @@ function register(channel, operation) {
 }
 const state = () => ({
   ...store.state(),
+  appearance: readAppearance(store),
   credentials: { ...credentials.status(), revision: provider?.epoch || 0 },
 });
 function createWindow() {
+  appearanceReady = false;
+  windowReady = false;
   window = new BrowserWindow({
     width: 1320,
     height: 900,
     minWidth: 860,
     minHeight: 650,
     title: 'AZ-104 Study Desk',
-    backgroundColor: '#f6f5f1',
+    backgroundColor: nativeTheme.shouldUseDarkColors ? '#0F172A' : '#F5F7FB',
     show: false,
     titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'default',
     ...(process.platform === 'darwin' ? { trafficLightPosition: { x: 22, y: 22 } } : {}),
@@ -98,7 +121,10 @@ function createWindow() {
     if (!trustedURL(url)) event.preventDefault();
   });
   window.webContents.on('will-attach-webview', (event) => event.preventDefault());
-  window.once('ready-to-show', () => window.show());
+  window.once('ready-to-show', () => {
+    windowReady = true;
+    showReadyWindow();
+  });
   window.on('closed', () => {
     window = null;
   });
@@ -120,6 +146,17 @@ else {
       const directory = app.getPath('userData');
       mkdirSync(directory, { recursive: true, mode: 0o700 });
       store = new StudyStore(join(directory, 'study.sqlite'));
+      nativeTheme.themeSource = readAppearance(store);
+      nativeTheme.on('updated', () => {
+        window?.setBackgroundColor(nativeTheme.shouldUseDarkColors ? '#0F172A' : '#F5F7FB');
+        window?.webContents.send('study:appearance-changed', resolvedAppearance());
+      });
+      register('study:get-appearance', () => resolvedAppearance());
+      register('study:appearance-ready', () => {
+        appearanceReady = true;
+        showReadyWindow();
+      });
+      register('study:set-appearance', (payload) => saveAppearance(store, payload, nativeTheme));
       const labStore = new LabStore(store);
       for (const method of [
         'list',

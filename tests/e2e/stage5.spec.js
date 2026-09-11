@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -47,6 +48,10 @@ test('generation queue publishes reviewed items, remains responsive, and recover
     delete env.AZ104_DEV_SERVER;
     app = await electron.launch({ args: [root], env });
     page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.waitForLoadState('domcontentloaded');
     page.on('pageerror', (e) => errors.push(e.message));
   };
@@ -185,7 +190,7 @@ test('generation queue publishes reviewed items, remains responsive, and recover
       frozen.items,
     );
     await page.setViewportSize({ width: 900, height: 760 });
-    await page.screenshot({ path: info.outputPath('generation.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('generation.png'), fullPage: true });
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);

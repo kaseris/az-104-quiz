@@ -1,3 +1,4 @@
+import Select from './Select.jsx';
 import { useEffect, useRef, useState } from 'react';
 const api = window.study;
 export default function LabAdaptations({ attempt }) {
@@ -60,7 +61,7 @@ export default function LabAdaptations({ attempt }) {
         <fieldset className="lab-controls" disabled={busy}>
           <label>
             Learning style{' '}
-            <select
+            <Select
               aria-label="Adaptation learning style"
               value={style}
               onChange={(e) => {
@@ -71,7 +72,7 @@ export default function LabAdaptations({ attempt }) {
               <option value="beginner">Beginner explanation</option>
               <option value="concise">Concise refresher</option>
               <option value="challenge">More challenging reflection</option>
-            </select>
+            </Select>
           </label>
           <p>
             No notes, pasted output, reflection responses, quiz results or previous conversations
