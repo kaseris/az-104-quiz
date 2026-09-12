@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -41,6 +42,10 @@ test('adaptation preview, independent review, explicit opening and restart prese
     delete env.AZ104_DEV_SERVER;
     app = await electron.launch({ args: [root], env });
     page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.context().setOffline(true);
     page.on('pageerror', (e) => errors.push(e.message));
   };
@@ -143,7 +148,7 @@ test('adaptation preview, independent review, explicit opening and restart prese
     await section().getByText('Adapted hint 1', { exact: true }).click();
     await page.setViewportSize({ width: 900, height: 760 });
     await section().scrollIntoViewIfNeeded();
-    await page.screenshot({ path: info.outputPath('adaptation.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('adaptation.png'), fullPage: true });
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);

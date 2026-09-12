@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -15,11 +16,15 @@ test('data management previews, exports, resets and imports through trusted file
   try {
     app = await electron.launch({ args: [resolve('.')], env });
     const page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.waitForLoadState('domcontentloaded');
     await page.getByRole('button', { name: 'Continue without AI' }).click();
     const quiz = await page.evaluate(() => window.study.start({ count: 5 }));
     await page.getByRole('button', { name: 'Settings & sources', exact: true }).click();
-    await page.screenshot({
+    await screenshot(page, {
       path: 'test-results/data-management.png',
       fullPage: true,
       animations: 'disabled',

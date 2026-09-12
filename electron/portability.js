@@ -105,7 +105,7 @@ function normalized(row) {
 export class Portability {
   constructor(
     store,
-    { filename, appVersion = '0.5.0', runtime = {}, diagnosticErrors = () => [] } = {},
+    { filename, appVersion = '0.6.0', runtime = {}, diagnosticErrors = () => [] } = {},
   ) {
     this.store = store;
     this.db = store.db;

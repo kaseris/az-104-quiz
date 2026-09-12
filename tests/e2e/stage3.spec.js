@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -13,6 +14,10 @@ async function launch(dir) {
   delete env.AZ104_DEV_SERVER;
   const app = await electron.launch({ args: [root], env });
   const page = await app.firstWindow();
+  await page.evaluate(
+    (mode) => window.study.setAppearance({ mode }),
+    test.info().project.name === 'dark' ? 'dark' : 'light',
+  );
   await page.waitForLoadState('domcontentloaded');
   return { app, page };
 }
@@ -90,7 +95,7 @@ test('reader offline lifecycle: search, highlight, bookmark, @ references, draft
           }),
         )
         .toBe(true);
-      await page.screenshot({ path: info.outputPath(`selection-${width}.png`) });
+      await screenshot(page, { path: info.outputPath(`selection-${width}.png`) });
       await page.getByLabel('Annotation note', { exact: true }).focus();
       await page.getByLabel('Annotation note', { exact: true }).press('Escape');
       await expect(panel).toHaveCount(0);
@@ -135,7 +140,7 @@ test('reader offline lifecycle: search, highlight, bookmark, @ references, draft
     await expect(page.locator('.context-excerpt').first()).toContainText(
       'A role assignment connects',
     );
-    await page.screenshot({ path: info.outputPath('reader-drafts.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('reader-drafts.png'), fullPage: true });
     expect(
       await page.evaluate(() => ({
         require: typeof window.require,
@@ -185,7 +190,7 @@ test('reader offline lifecycle: search, highlight, bookmark, @ references, draft
         .getByRole('button', { name: 'Search sections' })
         .evaluate((e) => getComputedStyle(e).outlineStyle),
     ).not.toBe('none');
-    await page.screenshot({ path: info.outputPath('reader-narrow.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('reader-narrow.png'), fullPage: true });
     await page.getByText(/Document cache ·/).click();
     await page.getByRole('button', { name: 'Clear all cached content…', exact: true }).click();
     await page.getByRole('button', { name: 'Confirm cache clearing' }).click();
@@ -235,7 +240,7 @@ test('live Microsoft Learn retrieval renders representative prose, tables, and c
         timeout: 25000,
       });
       await expect(page.locator(selector).first()).toBeVisible();
-      await page.screenshot({
+      await screenshot(page, {
         path: info.outputPath(`${title.split(' ')[0]}.png`),
         fullPage: true,
       });

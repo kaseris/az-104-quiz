@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -11,6 +12,10 @@ async function launch(directory) {
   delete env.AZ104_DEV_SERVER;
   const app = await electron.launch({ args: [root], env });
   const page = await app.firstWindow();
+  await page.evaluate(
+    (mode) => window.study.setAppearance({ mode }),
+    test.info().project.name === 'dark' ? 'dark' : 'light',
+  );
   await page.context().setOffline(true);
   await page.waitForLoadState('domcontentloaded');
   return { app, page };
@@ -24,14 +29,14 @@ test('offline desktop lifecycle: skip, saved draft, frozen answer, full quiz and
     ({ app, page } = await launch(directory));
     page.on('pageerror', (e) => errors.push(e.message));
     await expect(page.getByRole('heading', { name: 'Start where you are.' })).toBeVisible();
-    await page.screenshot({
+    await screenshot(page, {
       path: testInfo.outputPath('01-onboarding.png'),
       fullPage: true,
       animations: 'disabled',
     });
     await page.getByRole('button', { name: 'Continue without AI' }).click();
     await expect(page.getByRole('heading', { name: 'Make room for progress.' })).toBeVisible();
-    await page.screenshot({
+    await screenshot(page, {
       path: testInfo.outputPath('02-overview.png'),
       fullPage: true,
       animations: 'disabled',
@@ -60,7 +65,7 @@ test('offline desktop lifecycle: skip, saved draft, frozen answer, full quiz and
     await expect(page.getByRole('button', { name: 'Check answer', exact: true })).toBeEnabled();
     const chosen = await page.locator('label.answer-option.chosen .answer-text').allTextContents();
     const order = await page.locator('.answer-text').allTextContents();
-    await page.screenshot({
+    await screenshot(page, {
       path: testInfo.outputPath('03-question.png'),
       fullPage: true,
       animations: 'disabled',
@@ -82,10 +87,17 @@ test('offline desktop lifecycle: skip, saved draft, frozen answer, full quiz and
     await expect(incorrectTile).toHaveClass(/incorrect/);
     await expect(incorrectTile.locator('svg.lucide-x')).toHaveCount(1);
     await expect(incorrectTile.locator('svg.lucide-check')).toHaveCount(0);
-    expect(await incorrectTile.evaluate((el) => getComputedStyle(el).color)).toBe(
-      'rgb(150, 63, 43)',
-    );
-    await page.screenshot({
+    expect(
+      await incorrectTile.evaluate((el) => {
+        const probe = document.createElement('span');
+        probe.style.color = 'var(--color-error-text)';
+        el.append(probe);
+        const expected = getComputedStyle(probe).color;
+        probe.remove();
+        return getComputedStyle(el).color === expected;
+      }),
+    ).toBe(true);
+    await screenshot(page, {
       path: testInfo.outputPath('04-explanation.png'),
       fullPage: true,
       animations: 'disabled',
@@ -131,7 +143,7 @@ test('offline desktop lifecycle: skip, saved draft, frozen answer, full quiz and
     await page.getByRole('button', { name: 'Missed 1', exact: true }).click();
     await expect(page.locator('.review-item')).toHaveCount(1);
     await page.locator('.review-item summary').first().click();
-    await page.screenshot({
+    await screenshot(page, {
       path: testInfo.outputPath('05-results.png'),
       fullPage: true,
       animations: 'disabled',
@@ -160,7 +172,7 @@ test('offline desktop lifecycle: skip, saved draft, frozen answer, full quiz and
     await expect(
       page.getByText('15 of 15 objective groups sampled', { exact: true }),
     ).toBeVisible();
-    await page.screenshot({
+    await screenshot(page, {
       path: testInfo.outputPath('06-settings.png'),
       fullPage: true,
       animations: 'disabled',
@@ -169,7 +181,7 @@ test('offline desktop lifecycle: skip, saved draft, frozen answer, full quiz and
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);
-    await page.screenshot({
+    await screenshot(page, {
       path: testInfo.outputPath('07-narrow.png'),
       fullPage: true,
       animations: 'disabled',

@@ -14,6 +14,10 @@ test('main screens expose accessible names and sufficient contrast', async () =>
     delete env.AZ104_DEV_SERVER;
     app = await electron.launch({ args: [resolve('.')], env });
     const page = await app.firstWindow();
+    await page.evaluate(
+      (mode) => window.study.setAppearance({ mode }),
+      test.info().project.name === 'dark' ? 'dark' : 'light',
+    );
     await page.waitForLoadState('domcontentloaded');
     await page.emulateMedia({ reducedMotion: 'reduce' });
     const reports = [];

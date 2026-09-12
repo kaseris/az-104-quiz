@@ -1,10 +1,10 @@
 # AZ-104 Study Desk
 
-An offline-first desktop study companion built with Electron, React and SQLite. Version **0.5.0** includes adaptive practice, documentation reading, optional AI tutoring and reviewed generation, guided labs, and local data management. Stage 6 is accepted complete by user decision; unreleased lab drafts remain pending verification.
+An offline-first desktop study companion built with Electron, React and SQLite. Version **0.6.0** includes adaptive practice, documentation reading, optional AI tutoring and reviewed generation, guided labs, local data management, and light/dark/system appearances. Stage 6 is accepted complete by user decision; unreleased lab drafts remain pending verification.
 
 ## Install
 
-Download the [v0.5.0 unsigned preview](https://github.com/kaseris/az-104-quiz/releases/tag/v0.5.0). macOS Apple Silicon and Intel receive separate DMGs; Windows x64 receives a per-user installer. Installers bundle the runtime and content; users do not need Node.js, npm, a development server or the source checkout.
+Download the latest unsigned preview from the [releases page](https://github.com/kaseris/az-104-quiz/releases). macOS Apple Silicon and Intel receive separate DMGs; Windows x64 receives a per-user installer. Installers bundle the runtime and content; users do not need Node.js, npm, a development server or the source checkout.
 
 The initial preview is unsigned by a distribution identity. Signing/notarization and consistent unsigned-macOS Keychain behavior remain unmet dependencies. Automatic updates are disabled. See [installation, manual updates and recovery](docs/RECOVERY.md).
 

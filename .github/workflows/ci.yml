@@ -28,6 +28,8 @@ jobs:
       - run: npm run package
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+          # mac.identity is '-': allow ad-hoc signing on PRs without signing credentials.
+          CSC_FOR_PULL_REQUEST: 'true'
       - run: npm run test:packaged
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: failure()

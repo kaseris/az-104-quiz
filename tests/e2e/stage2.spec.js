@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -8,6 +9,10 @@ async function launch(dir) {
   delete env.AZ104_DEV_SERVER;
   const app = await electron.launch({ args: [resolve('.')], env });
   const page = await app.firstWindow();
+  await page.evaluate(
+    (mode) => window.study.setAppearance({ mode }),
+    test.info().project.name === 'dark' ? 'dark' : 'light',
+  );
   await page.context().setOffline(true);
   return { app, page };
 }
@@ -64,6 +69,7 @@ test('adaptive reasons, confidence, progress, issue resolution, exam drafts and 
     await page.getByLabel('Flag for review').click();
     await expect(page.getByLabel('Flag for review')).toBeChecked();
     await page.getByRole('button', { name: 'Question 10: unanswered', exact: true }).click();
+    await expect(page.getByText('Question 10 of 10', { exact: true })).toBeVisible();
     let hidden = await page.evaluate(async () => {
       const st = await window.study.getState();
       const s = await window.study.session(st.activeId);
@@ -73,7 +79,7 @@ test('adaptive reasons, confidence, progress, issue resolution, exam drafts and 
     expect(hidden.summary.correct).toBeNull();
     expect(JSON.stringify(hidden.s)).not.toContain('correctOptionIds');
     expect(hidden.s.items[0].flagged).toBe(true);
-    await page.screenshot({
+    await screenshot(page, {
       path: info.outputPath('exam-draft.png'),
       fullPage: true,
       animations: 'disabled',
@@ -91,7 +97,7 @@ test('adaptive reasons, confidence, progress, issue resolution, exam drafts and 
     await expect(page.getByRole('heading', { name: 'Another step forward.' })).toBeVisible();
     await page.getByRole('button', { name: 'Learning progress', exact: true }).click();
     await page.locator('.progress-objective').first().locator('summary').click();
-    await page.screenshot({
+    await screenshot(page, {
       path: info.outputPath('progress.png'),
       fullPage: true,
       animations: 'disabled',

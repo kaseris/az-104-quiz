@@ -2,6 +2,10 @@
 
 Original Study Desk code is MIT licensed. Bundled question adaptations and Microsoft documentation retain their source licenses; see licenses/ and docs/DOCUMENT_SOURCES.md. Electron includes Chromium and other components; its LICENSE and LICENSES.chromium.html are shipped by electron-builder.
 
+## Inter Variable
+
+Bundled upright and italic WOFF2 fonts from https://rsms.me/inter/. Licensed under the SIL Open Font License 1.1; see licenses/Inter-OFL.txt.
+
 ## entities 8.0.0
 
 Declared license: BSD-2-Clause.
@@ -479,4 +483,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ```
-

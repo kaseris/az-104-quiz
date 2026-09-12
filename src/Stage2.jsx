@@ -1,4 +1,6 @@
+import Select from './Select.jsx';
 import { GenerateLink } from './Generation.jsx';
+import ActionButton from './ActionButton.jsx';
 import { ReaderLink } from './Reader.jsx';
 import { useEffect, useState, useRef } from 'react';
 const api = window.study;
@@ -32,7 +34,7 @@ export function Confidence({ value, disabled, onChange }) {
   return (
     <label className="confidence">
       Confidence (optional)
-      <select
+      <Select
         aria-label="Confidence"
         value={value ?? ''}
         disabled={disabled}
@@ -42,7 +44,7 @@ export function Confidence({ value, disabled, onChange }) {
         <option value="unsure">Unsure</option>
         <option value="somewhat-sure">Somewhat sure</option>
         <option value="confident">Confident</option>
-      </select>
+      </Select>
     </label>
   );
 }
@@ -98,19 +100,19 @@ export function AdvancedSetup({ state, busy, start, initial }) {
     };
   }, [key]);
   return (
-    <section className="panel stage2-panel">
+    <section className="panel stage2-panel study-surface">
       <h2>Adaptive & exam-style practice</h2>
       <div className="stage2-fields">
         <label>
           Mode
-          <select aria-label="Mode" value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Select aria-label="Mode" value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="adaptive">Adaptive practice</option>
             <option value="exam">Exam-style practice</option>
-          </select>
+          </Select>
         </label>
         <label>
           Questions
-          <select
+          <Select
             aria-label="Questions"
             value={count}
             onChange={(e) => {
@@ -121,7 +123,7 @@ export function AdvancedSetup({ state, busy, start, initial }) {
             {[10, 20, 50].map((n) => (
               <option key={n}>{n}</option>
             ))}
-          </select>
+          </Select>
         </label>
       </div>
       {mode === 'exam' && (
@@ -160,7 +162,7 @@ export function AdvancedSetup({ state, busy, start, initial }) {
           <div className="stage2-fields">
             <label>
               Objective
-              <select
+              <Select
                 aria-label="Objective"
                 value={objectiveId}
                 onChange={(e) => {
@@ -176,11 +178,11 @@ export function AdvancedSetup({ state, busy, start, initial }) {
                       {o.title}
                     </option>
                   ))}
-              </select>
+              </Select>
             </label>
             <label>
               Skill
-              <select aria-label="Skill" value={skillId} onChange={(e) => setSkill(e.target.value)}>
+              <Select aria-label="Skill" value={skillId} onChange={(e) => setSkill(e.target.value)}>
                 <option value="">All selected skills</option>
                 {state.skills
                   .filter(
@@ -193,7 +195,7 @@ export function AdvancedSetup({ state, busy, start, initial }) {
                       {s.title}
                     </option>
                   ))}
-              </select>
+              </Select>
             </label>
             <label>
               Repeat cooldown (hours)
@@ -268,7 +270,7 @@ export function AdvancedSetup({ state, busy, start, initial }) {
                 .join('; ')}
             </p>
           )}
-          <button
+          <ActionButton
             className="primary"
             disabled={busy || loading || preview.blocked || !preview.available}
             onClick={() => start({ ...config, acceptShorter: true })}
@@ -276,7 +278,7 @@ export function AdvancedSetup({ state, busy, start, initial }) {
             {preview.limited
               ? `Start shorter ${preview.available}-question session`
               : `Start ${mode} session`}
-          </button>
+          </ActionButton>
         </>
       )}
     </section>
@@ -422,13 +424,13 @@ export function ReportQuestion({ question, run }) {
             >
               <label>
                 Category
-                <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <Select value={category} onChange={(e) => setCategory(e.target.value)}>
                   {['ambiguity', 'incorrect-answer', 'outdated-content', 'broken-reference'].map(
                     (c) => (
                       <option key={c}>{c}</option>
                     ),
                   )}
-                </select>
+                </Select>
               </label>
               <label>
                 Notes
@@ -563,7 +565,7 @@ export function Exam({ session, busy, update, navigate, poll }) {
             ? 'Timing invalid — continuing untimed; excluded from timed comparisons'
             : 'Untimed exam-style practice'}
       </p>
-      <section className="panel stage2-panel question-panel">
+      <section className="panel stage2-panel question-panel study-surface">
         <p>
           Question {session.cursor + 1} of {session.items.length}
         </p>

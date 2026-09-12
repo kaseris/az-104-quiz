@@ -3,6 +3,8 @@ import { join } from 'node:path';
 const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
 let out =
   '# Third-party notices\n\nOriginal Study Desk code is MIT licensed. Bundled question adaptations and Microsoft documentation retain their source licenses; see licenses/ and docs/DOCUMENT_SOURCES.md. Electron includes Chromium and other components; its LICENSE and LICENSES.chromium.html are shipped by electron-builder.\n\n';
+out +=
+  '## Inter Variable\n\nBundled upright and italic WOFF2 fonts from https://rsms.me/inter/. Licensed under the SIL Open Font License 1.1; see licenses/Inter-OFL.txt.\n\n';
 for (const [path, pkg] of Object.entries(lock.packages)) {
   if (!path || pkg.dev) continue;
   const manifest = JSON.parse(readFileSync(join(path, 'package.json'), 'utf8'));

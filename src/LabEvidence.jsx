@@ -1,3 +1,4 @@
+import Select from './Select.jsx';
 import { useEffect, useRef, useState } from 'react';
 const api = window.study?.labs;
 export default function LabEvidence({ attempt, busy, onSnapshot, onPending, complete, awaiting }) {
@@ -166,7 +167,7 @@ export default function LabEvidence({ attempt, busy, onSnapshot, onPending, comp
         </label>
         <label>
           Problem encountered
-          <select
+          <Select
             aria-label="Problem encountered"
             value={draft.problemKind}
             onChange={(e) => change('problemKind', e.target.value)}
@@ -174,7 +175,7 @@ export default function LabEvidence({ attempt, busy, onSnapshot, onPending, comp
             <option value="none">No problem recorded</option>
             <option value="environment">Environment, permissions or policy</option>
             <option value="conceptual">Understanding or configuration mistake</option>
-          </select>
+          </Select>
         </label>
       </fieldset>
       <p className="lab-meta">
@@ -242,7 +243,7 @@ export default function LabEvidence({ attempt, busy, onSnapshot, onPending, comp
         </label>
         <label>
           Reflection self-assessment
-          <select
+          <Select
             aria-label="Reflection self-assessment"
             value={reflection.assessment}
             onChange={(e) => setReflection({ ...reflection, assessment: e.target.value })}
@@ -250,7 +251,7 @@ export default function LabEvidence({ attempt, busy, onSnapshot, onPending, comp
             <option value="unanswered">Not assessed</option>
             <option value="needs_review">I need more practice</option>
             <option value="understood">I can explain it</option>
-          </select>
+          </Select>
         </label>
         <div className="lab-toolbar">
           <button
@@ -318,7 +319,7 @@ export default function LabEvidence({ attempt, busy, onSnapshot, onPending, comp
       <fieldset className="lab-controls" disabled={busy || pending}>
         <label>
           Resource cleanup
-          <select
+          <Select
             aria-label="Resource cleanup"
             value={cleanup.status}
             onChange={(e) => setCleanup({ ...cleanup, status: e.target.value })}
@@ -327,7 +328,7 @@ export default function LabEvidence({ attempt, busy, onSnapshot, onPending, comp
             <option value="completed">
               Completed — I confirmed no lab resources remain (or none were created)
             </option>
-          </select>
+          </Select>
         </label>
         <label>
           Cleanup note

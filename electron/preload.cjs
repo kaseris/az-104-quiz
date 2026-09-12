@@ -120,6 +120,14 @@ contextBridge.exposeInMainWorld(
     flag: invoke('study:flag'),
     finalize: invoke('study:finalize'),
     getState: invoke('study:state'),
+    setAppearance: invoke('study:set-appearance'),
+    getAppearance: invoke('study:get-appearance'),
+    appearanceReady: invoke('study:appearance-ready'),
+    onAppearanceChanged: (callback) => {
+      const listener = (_event, appearance) => callback(appearance);
+      ipcRenderer.on('study:appearance-changed', listener);
+      return () => ipcRenderer.removeListener('study:appearance-changed', listener);
+    },
     onboard: invoke('study:onboard'),
     saveKey: invoke('study:save-key'),
     removeKey: invoke('study:remove-key'),

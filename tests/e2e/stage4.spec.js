@@ -1,3 +1,4 @@
+import { screenshot } from './screenshot.js';
 import { test, expect, _electron as electron } from '@playwright/test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -13,6 +14,10 @@ async function launch(dir) {
   delete env.AZ104_DEV_SERVER;
   const app = await electron.launch({ args: [root], env });
   const page = await app.firstWindow();
+  await page.evaluate(
+    (mode) => window.study.setAppearance({ mode }),
+    test.info().project.name === 'dark' ? 'dark' : 'light',
+  );
   await page.waitForLoadState('domcontentloaded');
   return { app, page };
 }
@@ -71,7 +76,7 @@ test('tutor activation, preview, streamed citations, cancellation, deletion and 
     await page.getByLabel(/I understand the context sharing/).check();
     await page.getByRole('button', { name: 'Activate & test connection' }).click();
     await expect(page.getByText('AI ACTIVE', { exact: true })).toBeVisible();
-    await page.screenshot({ path: info.outputPath('settings.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('settings.png'), fullPage: true });
     await page.getByRole('button', { name: 'Study tutor', exact: true }).click();
     await page.getByRole('button', { name: 'New conversation', exact: true }).click();
     await page.getByLabel('Your question', { exact: true }).fill('Explain role assignment scope');
@@ -83,7 +88,7 @@ test('tutor activation, preview, streamed citations, cancellation, deletion and 
     await expect(page.getByRole('region', { name: 'Cited source' })).toContainText(
       'role assignment',
     );
-    await page.screenshot({ path: info.outputPath('tutor-answer.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('tutor-answer.png'), fullPage: true });
     await page
       .getByLabel('Your question', { exact: true })
       .fill('Give me another hint about role scope');
@@ -99,7 +104,7 @@ test('tutor activation, preview, streamed citations, cancellation, deletion and 
     ).toBe(true);
     await page.getByLabel('Your question', { exact: true }).fill('Saved follow-up question');
     await page.getByLabel('Your question', { exact: true }).press('Tab');
-    await page.screenshot({ path: info.outputPath('tutor-narrow.png'), fullPage: true });
+    await screenshot(page, { path: info.outputPath('tutor-narrow.png'), fullPage: true });
     await app.close();
     ({ app, page } = await launch(dir));
     page.on('pageerror', (e) => errors.push(e.message));
@@ -118,7 +123,7 @@ test('tutor activation, preview, streamed citations, cancellation, deletion and 
     expect(errors).toEqual([]);
   } finally {
     if (app) {
-      await page.screenshot({ path: info.outputPath('last-state.png') }).catch(() => {});
+      await screenshot(page, { path: info.outputPath('last-state.png') }).catch(() => {});
       await app.close();
     }
     rmSync(dir, { recursive: true, force: true });

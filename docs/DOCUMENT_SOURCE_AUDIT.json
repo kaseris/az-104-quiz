@@ -1,12 +1,52 @@
 {
-  "registryVersion": "docs-2026-09-06-v1",
-  "checkedAt": "2026-09-06T18:50:46.124Z",
+  "registryVersion": "docs-2026-09-09-v3",
+  "checkedAt": "2026-09-11T23:08:46.707Z",
   "results": [
+    {
+      "id": "lab-tags",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+      "objectiveId": "identity.governance",
+      "skillIds": [
+        "identity.governance.tags"
+      ],
+      "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/management/tag-resources-cli.md",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli",
+      "redirects": [],
+      "revision": "d85c7ae6fa68cdf044e1405383956515d5b0459d52058478e7c75fe46c13ab96",
+      "sourceUpdated": "2025-12-08T23:11:00Z",
+      "sections": 7,
+      "hasCode": true,
+      "hasTable": false,
+      "status": "verified"
+    },
+    {
+      "id": "lab-vnet",
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-network/manage-virtual-network",
+      "objectiveId": "networking.networks",
+      "skillIds": [
+        "networking.networks.create"
+      ],
+      "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/virtual-network/manage-virtual-network.yml",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/manage-virtual-network",
+      "redirects": [],
+      "revision": "8cd467952a618f20b35c67c797b396339623d5887d21b796cf839d29d2908b69",
+      "sourceUpdated": "2025-10-08T22:11:00Z",
+      "sections": 13,
+      "hasCode": true,
+      "hasTable": true,
+      "status": "verified"
+    },
     {
       "id": "users",
       "url": "https://learn.microsoft.com/en-us/entra/identity/users/users-bulk-add",
       "objectiveId": "identity.users",
-      "skillIds": ["identity.users.create"],
+      "skillIds": [
+        "identity.users.create"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/entra-docs/blob/main/docs/identity/users/users-bulk-add.md",
       "license": "MIT",
       "licenseUrl": "https://github.com/MicrosoftDocs/entra-docs/blob/main/LICENSE",
@@ -17,15 +57,16 @@
       "sections": 13,
       "hasCode": true,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/entra-docs/blob/main/LICENSE"
+      "status": "verified"
     },
     {
       "id": "rbac",
       "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
       "objectiveId": "identity.access",
-      "skillIds": ["identity.access.assignments", "identity.access.interpret"],
+      "skillIds": [
+        "identity.access.assignments",
+        "identity.access.interpret"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/role-based-access-control/overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -36,15 +77,15 @@
       "sections": 14,
       "hasCode": false,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "governance",
       "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview",
       "objectiveId": "identity.governance",
-      "skillIds": ["identity.governance.management-groups"],
+      "skillIds": [
+        "identity.governance.management-groups"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/governance/management-groups/overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -55,15 +96,16 @@
       "sections": 16,
       "hasCode": true,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "sas",
       "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
       "objectiveId": "storage.access",
-      "skillIds": ["storage.access.sas", "storage.access.policies"],
+      "skillIds": [
+        "storage.access.sas",
+        "storage.access.policies"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/storage/common/storage-sas-overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -74,15 +116,15 @@
       "sections": 17,
       "hasCode": false,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "redundancy",
       "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
       "objectiveId": "storage.accounts",
-      "skillIds": ["storage.accounts.redundancy"],
+      "skillIds": [
+        "storage.accounts.redundancy"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/storage/common/storage-redundancy.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -93,15 +135,15 @@
       "sections": 17,
       "hasCode": false,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "lifecycle",
       "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview",
       "objectiveId": "storage.data",
-      "skillIds": ["storage.data.lifecycle"],
+      "skillIds": [
+        "storage.data.lifecycle"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/storage/blobs/lifecycle-management-overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -112,15 +154,15 @@
       "sections": 7,
       "hasCode": false,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "bicep",
       "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code",
       "objectiveId": "compute.templates",
-      "skillIds": ["compute.templates.bicep"],
+      "skillIds": [
+        "compute.templates.bicep"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -131,15 +173,15 @@
       "sections": 9,
       "hasCode": true,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "vms",
       "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability",
       "objectiveId": "compute.vms",
-      "skillIds": ["compute.vms.availability"],
+      "skillIds": [
+        "compute.vms.availability"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-compute-docs/blob/main/articles/virtual-machines/availability.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-compute-docs/blob/main/LICENSE",
@@ -150,15 +192,15 @@
       "sections": 8,
       "hasCode": false,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-compute-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "containers",
       "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview",
       "objectiveId": "compute.containers",
-      "skillIds": ["compute.containers.instances"],
+      "skillIds": [
+        "compute.containers.instances"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-compute-docs/blob/main/articles/container-instances/container-instances-overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-compute-docs/blob/main/LICENSE",
@@ -169,15 +211,15 @@
       "sections": 20,
       "hasCode": false,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-compute-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "apps",
       "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
       "objectiveId": "compute.apps",
-      "skillIds": ["compute.apps.slots"],
+      "skillIds": [
+        "compute.apps.slots"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/app-service/deploy-staging-slots.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -188,15 +230,15 @@
       "sections": 20,
       "hasCode": true,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "routes",
       "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
       "objectiveId": "networking.networks",
-      "skillIds": ["networking.networks.routes"],
+      "skillIds": [
+        "networking.networks.routes"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/virtual-network/virtual-networks-udr-overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -207,15 +249,15 @@
       "sections": 19,
       "hasCode": true,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "nsg",
       "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
       "objectiveId": "networking.security",
-      "skillIds": ["networking.security.groups"],
+      "skillIds": [
+        "networking.security.groups"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/virtual-network/network-security-groups-overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -226,15 +268,15 @@
       "sections": 18,
       "hasCode": false,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "dns",
       "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links",
       "objectiveId": "networking.dns",
-      "skillIds": ["networking.dns.dns"],
+      "skillIds": [
+        "networking.dns.dns"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/dns/private-dns-virtual-network-links.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -245,15 +287,15 @@
       "sections": 6,
       "hasCode": false,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "balancer",
       "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview",
       "objectiveId": "networking.dns",
-      "skillIds": ["networking.dns.balancer"],
+      "skillIds": [
+        "networking.dns.balancer"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/load-balancer/load-balancer-overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -264,15 +306,34 @@
       "sections": 14,
       "hasCode": false,
       "hasTable": false,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
+    },
+    {
+      "id": "metric-alerts",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
+      "objectiveId": "monitoring.monitor",
+      "skillIds": [
+        "monitoring.monitor.alerts"
+      ],
+      "sourceUrl": "https://github.com/MicrosoftDocs/azure-monitor-docs/blob/main/articles/azure-monitor/alerts/alerts-create-metric-alert-rule.md",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/MicrosoftDocs/azure-monitor-docs/blob/main/LICENSE",
+      "finalUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule",
+      "redirects": [],
+      "revision": "fda5e8da5a2f9fa76eb6b0b5206aeaed3fe6cf94f4eb371a024db94dd4cf52f2",
+      "sourceUpdated": "2026-07-08T22:11:00Z",
+      "sections": 15,
+      "hasCode": false,
+      "hasTable": true,
+      "status": "verified"
     },
     {
       "id": "queries",
       "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
       "objectiveId": "monitoring.monitor",
-      "skillIds": ["monitoring.monitor.queries"],
+      "skillIds": [
+        "monitoring.monitor.queries"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-monitor-docs/blob/main/articles/azure-monitor/logs/get-started-queries.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-monitor-docs/blob/main/LICENSE",
@@ -283,15 +344,15 @@
       "sections": 25,
       "hasCode": true,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-monitor-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     },
     {
       "id": "backup",
       "url": "https://learn.microsoft.com/en-us/azure/backup/azure-file-share-backup-overview",
       "objectiveId": "monitoring.backup",
-      "skillIds": ["monitoring.backup.restore"],
+      "skillIds": [
+        "monitoring.backup.restore"
+      ],
       "sourceUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/backup/azure-file-share-backup-overview.md",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE",
@@ -302,9 +363,7 @@
       "sections": 9,
       "hasCode": false,
       "hasTable": true,
-      "status": "verified",
-      "codeLicense": "MIT",
-      "codeLicenseUrl": "https://github.com/MicrosoftDocs/azure-docs/blob/main/LICENSE-CODE"
+      "status": "verified"
     }
   ]
 }

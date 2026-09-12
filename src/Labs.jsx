@@ -1,3 +1,4 @@
+import Select from './Select.jsx';
 import LabAdaptations from './LabAdaptations.jsx';
 import LabEvidence from './LabEvidence.jsx';
 import { useEffect, useRef, useState } from 'react';
@@ -289,7 +290,7 @@ export default function Labs() {
                   </label>
                   <label>
                     History status
-                    <select
+                    <Select
                       aria-label="History status"
                       value={historyStatus}
                       onChange={(e) => setHistoryStatus(e.target.value)}
@@ -300,11 +301,11 @@ export default function Labs() {
                       <option value="awaiting_evidence">Awaiting evidence</option>
                       <option value="completed">Completed</option>
                       <option value="cleanup_pending">Cleanup pending</option>
-                    </select>
+                    </Select>
                   </label>
                   <label>
                     History method
-                    <select
+                    <Select
                       aria-label="History method"
                       value={historyMethod}
                       onChange={(e) => setHistoryMethod(e.target.value)}
@@ -312,7 +313,7 @@ export default function Labs() {
                       <option value="all">Both methods</option>
                       <option value="portal">Portal</option>
                       <option value="cli">CLI</option>
-                    </select>
+                    </Select>
                   </label>
                 </div>
                 {!history.length && <p>No saved attempts match these filters.</p>}
@@ -387,7 +388,7 @@ export default function Labs() {
                 </label>
                 <label>
                   Domain
-                  <select
+                  <Select
                     aria-label="Domain"
                     value={domain}
                     onChange={(e) => setDomain(e.target.value)}
@@ -398,7 +399,7 @@ export default function Labs() {
                         {d.title}
                       </option>
                     ))}
-                  </select>
+                  </Select>
                 </label>
               </div>
               {!library ? (
@@ -498,14 +499,14 @@ export default function Labs() {
                 <div className="lab-start">
                   <label>
                     Execution method
-                    <select
+                    <Select
                       aria-label="Execution method"
                       value={method}
                       onChange={(e) => setMethod(e.target.value)}
                     >
                       <option value="portal">Azure Portal</option>
                       <option value="cli">Azure CLI (Bash)</option>
-                    </select>
+                    </Select>
                   </label>
                   <label className="check-line">
                     <input
